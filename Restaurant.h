@@ -4,6 +4,7 @@ using namespace std;
 
 class Restaurant {
     public:
+        void setCurrentAvailable(int numPeople);
     private:
 };
 #endif
