@@ -2,8 +2,7 @@
 #define RESERVATION_H
 using namespace std;
 
-class Reservation : public Restaurant, public Person, public Table
-{
+class Reservation : public Restaurant, public Person, public Table {
 public:
     void setName(string newName);
     void setPhoneNum(int newNum);
