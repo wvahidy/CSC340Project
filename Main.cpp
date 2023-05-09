@@ -31,6 +31,13 @@ int main() {
              << " (5)Set number of seats per table\n"
              << "Enter a number from 1 to " << NUM_OPTIONS_S << ", or 0 to exit: " << endl;
         cin >> menuChoice;
+         if (menuChoice == 0) {
+            break;
+         else if (menuChoice < 0 || menuChoice > NUM_OPTIONS) {
+            cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
+            continue;
+        }
+        
 
         Reservation reservation1;
         reservation1.setName("Jason Stehlik");
