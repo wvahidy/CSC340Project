@@ -33,6 +33,7 @@ int main() {
         cin >> menuChoice;
          if (menuChoice == 0) {
             break;
+         }
          else if (menuChoice < 0 || menuChoice > NUM_OPTIONS) {
             cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
             continue;

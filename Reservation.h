@@ -1,5 +1,8 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
+#include "Restaurant.h"
+#include "Person.h"
+#include "Table.h"
 using namespace std;
 
 class Reservation : public Restaurant, public Person, public Table {
