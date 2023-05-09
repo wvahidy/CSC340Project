@@ -1,5 +1,6 @@
 #ifndef RESTAURANT_H
 #define RESTAURANT_H
+#include <string>
 using namespace std;
 
 class Restaurant {
