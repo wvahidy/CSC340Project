@@ -5,7 +5,7 @@
 #include "Table.h"
 using namespace std;
 
-class Reservation : public Restaurant, public Table
+class Reservation : public Table
 {
 public:
     void setResName(string newName);
