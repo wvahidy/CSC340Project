@@ -6,7 +6,7 @@ using namespace std;
 class Person {
     public:
         void setName(string newName);
-        void getName() const;
+        string getName() const;
     private:
         string name;
 };
