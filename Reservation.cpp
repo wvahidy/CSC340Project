@@ -53,8 +53,7 @@ int Reservation::getPhoneNum() const { return phoneNum; }
 string Reservation::getPriority() const { return priority; }
 int Reservation::getNumReserved() const { return numReserved; }
 
-void Reservation::updateReservationListFile(string name)
-{
+void Reservation::updateReservationListFile() {
     ofstream reservationList;
     reservationList.open("ReservationList.txt");
     Reservation *current = resHead;

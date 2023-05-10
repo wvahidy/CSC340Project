@@ -39,7 +39,6 @@ int main() {
             continue;
         }
         
-
         Reservation *reservation1;
         reservation1->setResName("Jason Stehlik");
         reservation1->setPhoneNum(4152982562);

@@ -1,11 +1,9 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
-#include "Restaurant.h"
-#include "Person.h"
-#include "Table.h"
+#include <string>
 using namespace std;
 
-class Reservation : public Table
+class Reservation
 {
 public:
     void setResName(string newName);
@@ -24,10 +22,10 @@ public:
     string getPriority() const;
     int getNumReserved() const;
 private:
-    void updateReservationListFile(string name);
+    void updateReservationListFile();
     Reservation *next;
     Reservation *prev;
-    string resName = " ";
+    string resName = "";
     int time;
     int numReserved;
     int phoneNum;
