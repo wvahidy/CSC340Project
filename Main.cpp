@@ -10,9 +10,7 @@ using namespace std;
 #define MAX_OCCUPANCY 100
 #define RESTAURANT_NAME "Boxiwana"
 #define NUM_OPTIONS 6
-#define NUM_OPTIONS_S "6";
-Table *tableHead = nullptr;
-Table *tableTail = nullptr;
+#define NUM_OPTIONS_S "6"
 
 int main() {
     Restaurant aRestaurant;
@@ -29,15 +27,9 @@ int main() {
              << " (5)Set number of seats per table\n"
              << "Enter a number from 1 to " << NUM_OPTIONS_S << ", or 0 to exit: " << endl;
         cin >> menuChoice;
-        //  if (menuChoice == 0) {
-        //     break;
-        //  }
-        //  else if (menuChoice < 0 || menuChoice > NUM_OPTIONS) {
-        //     cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
-        //     continue;
-        // }
         switch (menuChoice) {
             case 0:
+                cout << "Goodbye!" << endl;
                 break;
             case 1:
                 break;

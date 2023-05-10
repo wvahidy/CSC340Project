@@ -3,6 +3,9 @@
 #include "Restaurant.h"
 using namespace std;
 
+extern Table *tableHead = nullptr;
+extern Table *tableTail = nullptr;
+
 class Table : public Restaurant {
     public:
         void setStatus(int newStatus);
