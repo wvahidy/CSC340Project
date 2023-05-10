@@ -12,7 +12,7 @@ public:
     void setTableAssignment3(Table newTable);
     void setTableAssignment4(Table newTable);
     void setTableAssignment5(Table newTable);
-    Table getTableAssignments();
+    Table getTableAssignments() const;
 
 private:
     Table tableAssignment1;
