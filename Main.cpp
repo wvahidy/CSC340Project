@@ -12,6 +12,50 @@ using namespace std;
 #define NUM_OPTIONS 6
 #define NUM_OPTIONS_S "6"
 
+Reservation *resHead = nullptr;
+Reservation *resTail = nullptr;
+
+void Reservation::setResName(string newResName) {
+    resName = newResName;
+}
+void Reservation::setPhoneNum(int newNum) {
+    phoneNum = newNum;
+}
+void Reservation::setNext(Reservation *newNext) {
+    next = newNext;
+}
+void Reservation::setPrev(Reservation *newPrev) {
+    prev = newPrev;
+}
+void Reservation::setPriority(string newPriority) {
+    priority = newPriority;
+}
+void Reservation::setTime(int newTime) {
+    time = newTime;
+}
+void Reservation::setNumReserved(int newNumReserved) {
+    numReserved = newNumReserved;
+}
+void Reservation::addReservation(Reservation *newRes) {
+    if (resTail == nullptr)
+    {
+        Reservation *res = new Reservation;
+        res->setPrev(nullptr);
+        res->setNext(nullptr);
+        resHead = res;
+        resTail = res;
+    }
+    Reservation *res = new Reservation;
+    resTail->setNext(res);
+    res->setPrev(resTail);
+    res->setNext(nullptr);
+    resTail = res;
+}
+
+void Restaurant::setCurrentAvailable(int numPeople) {
+    currentAvailable = numPeople;
+}
+
 int main() {
     Restaurant aRestaurant;
     aRestaurant.setCurrentAvailable(MAX_OCCUPANCY);
@@ -30,6 +74,7 @@ int main() {
         switch (menuChoice) {
             case 0:
                 cout << "Goodbye!" << endl;
+                exit(0);
                 break;
             case 1:
                 break;
