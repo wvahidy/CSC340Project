@@ -38,12 +38,11 @@ int main() {
             cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
             continue;
         }
-        
-        Reservation *reservation1;
-        reservation1->setResName("Jason Stehlik");
-        reservation1->setPhoneNum(4152982562);
-        reservation1->setTime(2000); // 8:00 pm
-        resHead->addReservation(reservation1);
     }
+    Reservation *reservation1;
+    reservation1->setResName("Jason Stehlik");
+    reservation1->setPhoneNum(4152982562);
+    reservation1->setTime(2000); // 8:00 pm
+    resHead->addReservation(reservation1);
     return 0;
 }
