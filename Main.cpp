@@ -10,9 +10,7 @@ using namespace std;
 #define MAX_OCCUPANCY 100
 #define RESTAURANT_NAME "Boxiwana"
 #define NUM_OPTIONS 6
-#define NUM_OPTIONS_S "6"
-Reservation *resHead = nullptr;
-Reservation *resTail = nullptr;
+#define NUM_OPTIONS_S "6";
 Table *tableHead = nullptr;
 Table *tableTail = nullptr;
 

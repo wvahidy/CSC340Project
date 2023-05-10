@@ -3,6 +3,9 @@
 #include <string>
 using namespace std;
 
+extern Reservation *resHead;
+extern Reservation *resTail;
+
 class Reservation
 {
 public:
