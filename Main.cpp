@@ -20,6 +20,7 @@ int main() {
     int numRes;
     int phone;
     string priority;
+    Reservation *reservation;
     int menuChoice = 0;
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
     {
@@ -46,13 +47,17 @@ int main() {
                 cin >> time;
                 cout << "Number of people for Reservation: ";
                 cin >> numRes;
+                cout << "Phone Number: ";
+                cin >> phone;
                 cout << "Reservation Priority (H or L): ";
                 cin >> priority;
-                Reservation *reservation1 = new Reservation();
-                reservation1->setResName("Jason Stehlik");
-                reservation1->setPhoneNum(4152982562);
-                reservation1->setTime(2000); // 8:00 pm
-                resHead->addReservation(reservation1);
+                reservation = new Reservation();
+                reservation->setResName(resName);
+                reservation->setTime(time);
+                reservation->setNumReserved(numRes);
+                reservation->setPhoneNum(phone);
+                reservation->setPriority(priority);
+                resHead->addReservation(reservation);
                 break;
             case 3: 
                 break;
@@ -62,7 +67,7 @@ int main() {
                 break;
             default: 
                 cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
-                continue;
+                menuChoice = 0;
         }
     }
     return 0;
