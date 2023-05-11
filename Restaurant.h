@@ -9,7 +9,9 @@ class Restaurant {
         void incCurrentAvailable(int numPeople);
         int getCurrentAvailable() const;
         string getRestaurantName() const;
+        void viewReservations(string filename);
     private:
         int currentAvailable;
 };
+
 #endif

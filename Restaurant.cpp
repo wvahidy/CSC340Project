@@ -30,6 +30,43 @@ void Restaurant::setCurrentAvailable(int numPeople) {
     currentAvailable = numPeople;
 }
 
+void Restaurant::viewReservations(string filename) {
+    ifstream resList;
+    string data;
+    int resCount = 1;
+    resList.open(filename);
+    if (!resList.is_open()) {
+        cout << "ERROR";
+        exit(0);
+    }
+    while (!resList.eof()) {
+        cout << "Reservation " << resCount << " " << endl;
+        for (int i = 0; i < 4; i++) {
+            resList >> data;
+            switch (i) {
+                case 0:
+                    cout << "Name: ";
+                    break;
+                case 1: 
+                    cout << "Phone: ";
+                    break;
+                case 2:
+                    cout << "Time: ";
+                    break;
+                case 3:
+                    cout << "Priority: ";
+                    break;
+                default:
+                    cout << endl;
+            }
+            cout << data << " ";
+            cout << endl;
+        }
+        resCount++;
+    }
+    resList.close();
+}
+
 int Restaurant::getCurrentAvailable() const { return currentAvailable; }
 
 string Restaurant::getRestaurantName() const { return RESTAURANT_NAME; }

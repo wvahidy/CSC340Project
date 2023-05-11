@@ -39,6 +39,7 @@ int main() {
                 exit(0);
                 break;
             case 1:
+                aRestaurant.viewReservations("reservationList.txt");
                 break;
             case 2:
                 cout << "Name for Reservation: ";

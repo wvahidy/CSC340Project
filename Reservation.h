@@ -1,10 +1,10 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 #include <string>
+#include "Restaurant.h"
 using namespace std;
 
-class Reservation
-{
+class Reservation : public Restaurant {
 public:
     Reservation();
     Reservation(Reservation *end, string newName, int newTime, int numR, int newNum, string prio);
@@ -36,5 +36,7 @@ private:
 
 extern Reservation *resHead;
 extern Reservation *resTail;
+extern Reservation *resListH;
+extern Reservation *resListT;
 
 #endif
