@@ -41,7 +41,7 @@ void Restaurant::viewReservations(string filename) {
     }
     while (!resList.eof()) {
         cout << "Reservation " << resCount << " " << endl;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             resList >> data;
             switch (i) {
                 case 0:
@@ -54,14 +54,17 @@ void Restaurant::viewReservations(string filename) {
                     cout << "Time: ";
                     break;
                 case 3:
+                    cout << "Party Size: ";
+                    break;
+                case 4:
                     cout << "Priority: ";
                     break;
                 default:
                     cout << endl;
             }
-            cout << data << " ";
-            cout << endl;
+            cout << data << " " << endl;
         }
+        cout << endl;
         resCount++;
     }
     resList.close();

@@ -18,7 +18,7 @@ Reservation::Reservation() {
     next = nullptr;
     prev = nullptr;
 }
-Reservation::Reservation(Reservation *end, string newName, int newTime, int numR, int newNum, string prio) {
+Reservation::Reservation(string newName, int newTime, int numR, int newNum, string prio) {
     resName = newName;
     time = newTime;
     numReserved = numR;
@@ -48,16 +48,14 @@ void Reservation::setTime(int newTime) {
 void Reservation::setNumReserved(int newNumReserved) {
     this->numReserved = newNumReserved;
 }
-void Reservation::addReservation(Reservation *newRes) {
+void Reservation::addReservation(Reservation *res) {
     if (resTail == nullptr)
     {
-        Reservation *res = new Reservation;
         res->setPrev(nullptr);
         res->setNext(nullptr);
         resHead = res;
         resTail = res;
     }
-    Reservation *res = new Reservation;
     resTail->setNext(res);
     res->setPrev(resTail);
     res->setNext(nullptr);
@@ -74,12 +72,13 @@ int Reservation::getNumReserved() const { return numReserved; }
 
 void Reservation::updateReservationListFile() {
     ofstream reservationList;
-    reservationList.open("ReservationList.txt");
+    reservationList.open("reservationList.txt");
     Reservation *current = resHead;
     while (current != nullptr)
     {
         reservationList << current->getName() << endl;
         reservationList << current->getPhoneNum() << endl;
+        reservationList << current->getTime() << endl;
         reservationList << current->getNumReserved() << endl;
         reservationList << current->getPriority() << endl;
         current = current->next;
