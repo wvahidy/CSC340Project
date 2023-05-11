@@ -24,7 +24,7 @@ public:
     string getPriority() const;
     int getNumReserved() const;
 private:
-    void updateReservationListFile();
+    static void updateReservationListFile();
     Reservation *next;
     Reservation *prev;
     string resName;

@@ -62,6 +62,7 @@ void Reservation::addReservation(Reservation *newRes) {
     res->setPrev(resTail);
     res->setNext(nullptr);
     resTail = res;
+    updateReservationListFile();
 }
 int Reservation::getTime() const { return time; }
 string Reservation::getName() const { return resName; }
