@@ -76,12 +76,13 @@ void Reservation::updateReservationListFile() {
     ofstream reservationList;
     reservationList.open("ReservationList.txt");
     Reservation *current = resHead;
-    while (current->getNext() != nullptr)
+    while (current != nullptr)
     {
         reservationList << current->getName() << endl;
         reservationList << current->getPhoneNum() << endl;
         reservationList << current->getNumReserved() << endl;
         reservationList << current->getPriority() << endl;
+        current = current->next;
     }
     reservationList.close();
 }
