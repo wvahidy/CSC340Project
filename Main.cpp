@@ -48,11 +48,11 @@ int main() {
                 cin >> numRes;
                 cout << "Reservation Priority (H or L): ";
                 cin >> priority;
-                Reservation *reservation = new Reservation();
-                reservation->setResName("Jason Stehlik");
-                reservation->setPhoneNum(4152982562);
-                reservation->setTime(2000); // 8:00 pm
-                resHead->addReservation(reservation);
+                Reservation *reservation1 = new Reservation();
+                reservation1->setResName("Jason Stehlik");
+                reservation1->setPhoneNum(4152982562);
+                reservation1->setTime(2000); // 8:00 pm
+                resHead->addReservation(reservation1);
                 break;
             case 3: 
                 break;
