@@ -36,7 +36,5 @@ private:
 
 extern Reservation *resHead;
 extern Reservation *resTail;
-extern Reservation *resListH;
-extern Reservation *resListT;
 
 #endif
