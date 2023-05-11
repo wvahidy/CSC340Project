@@ -12,53 +12,14 @@ using namespace std;
 #define NUM_OPTIONS 6
 #define NUM_OPTIONS_S "6"
 
-Reservation *resHead = nullptr;
-Reservation *resTail = nullptr;
-
-void Reservation::setResName(string newResName) {
-    resName = newResName;
-}
-void Reservation::setPhoneNum(int newNum) {
-    phoneNum = newNum;
-}
-void Reservation::setNext(Reservation *newNext) {
-    next = newNext;
-}
-void Reservation::setPrev(Reservation *newPrev) {
-    prev = newPrev;
-}
-void Reservation::setPriority(string newPriority) {
-    priority = newPriority;
-}
-void Reservation::setTime(int newTime) {
-    time = newTime;
-}
-void Reservation::setNumReserved(int newNumReserved) {
-    numReserved = newNumReserved;
-}
-void Reservation::addReservation(Reservation *newRes) {
-    if (resTail == nullptr)
-    {
-        Reservation *res = new Reservation;
-        res->setPrev(nullptr);
-        res->setNext(nullptr);
-        resHead = res;
-        resTail = res;
-    }
-    Reservation *res = new Reservation;
-    resTail->setNext(res);
-    res->setPrev(resTail);
-    res->setNext(nullptr);
-    resTail = res;
-}
-
-void Restaurant::setCurrentAvailable(int numPeople) {
-    currentAvailable = numPeople;
-}
-
 int main() {
     Restaurant aRestaurant;
     aRestaurant.setCurrentAvailable(MAX_OCCUPANCY);
+    string resName;
+    int time;
+    int numRes;
+    int phone;
+    string priority;
     int menuChoice = 0;
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
     {
@@ -79,6 +40,19 @@ int main() {
             case 1:
                 break;
             case 2:
+                cout << "Name for Reservation: ";
+                cin >> resName;
+                cout << "Time for Reservation (military): ";
+                cin >> time;
+                cout << "Number of people for Reservation: ";
+                cin >> numRes;
+                cout << "Reservation Priority (H or L): ";
+                cin >> priority;
+                Reservation *reservation = new Reservation();
+                reservation->setResName("Jason Stehlik");
+                reservation->setPhoneNum(4152982562);
+                reservation->setTime(2000); // 8:00 pm
+                resHead->addReservation(reservation);
                 break;
             case 3: 
                 break;
@@ -91,10 +65,5 @@ int main() {
                 continue;
         }
     }
-    Reservation *reservation1;
-    reservation1->setResName("Jason Stehlik");
-    reservation1->setPhoneNum(4152982562);
-    reservation1->setTime(2000); // 8:00 pm
-    resHead->addReservation(reservation1);
     return 0;
 }

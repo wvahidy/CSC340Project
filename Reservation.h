@@ -6,6 +6,8 @@ using namespace std;
 class Reservation
 {
 public:
+    Reservation();
+    Reservation(Reservation *end, string newName, int newTime, int numR, int newNum, string prio);
     void setResName(string newName);
     void setPhoneNum(int newNum);
     void setTime(int newTime);
@@ -25,10 +27,14 @@ private:
     void updateReservationListFile();
     Reservation *next;
     Reservation *prev;
-    string resName = "";
+    string resName;
     int time;
     int numReserved;
     int phoneNum;
     string priority;
 };
+
+extern Reservation *resHead;
+extern Reservation *resTail;
+
 #endif

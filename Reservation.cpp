@@ -9,26 +9,44 @@ using namespace std;
 Reservation *resHead = nullptr;
 Reservation *resTail = nullptr;
 
+Reservation::Reservation() {
+    resName = "";
+    time = 0;
+    numReserved = 0;
+    phoneNum = 0;
+    priority = "";
+    next = nullptr;
+    prev = nullptr;
+}
+Reservation::Reservation(Reservation *end, string newName, int newTime, int numR, int newNum, string prio) {
+    resName = newName;
+    time = newTime;
+    numReserved = numR;
+    phoneNum = newNum;
+    priority = prio;
+    next = nullptr;
+    prev = nullptr;
+}
 void Reservation::setResName(string newResName) {
-    resName = newResName;
+    this->resName = newResName;
 }
 void Reservation::setPhoneNum(int newNum) {
-    phoneNum = newNum;
+    this->phoneNum = newNum;
 }
 void Reservation::setNext(Reservation *newNext) {
-    next = newNext;
+    this->next = newNext;
 }
 void Reservation::setPrev(Reservation *newPrev) {
-    prev = newPrev;
+    this->prev = newPrev;
 }
 void Reservation::setPriority(string newPriority) {
-    priority = newPriority;
+    this->priority = newPriority;
 }
 void Reservation::setTime(int newTime) {
-    time = newTime;
+    this->time = newTime;
 }
 void Reservation::setNumReserved(int newNumReserved) {
-    numReserved = newNumReserved;
+    this->numReserved = newNumReserved;
 }
 void Reservation::addReservation(Reservation *newRes) {
     if (resTail == nullptr)
