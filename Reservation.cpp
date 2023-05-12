@@ -86,21 +86,22 @@ Reservation* Reservation::fileToLinkedList(string filename) {
         cout << "ERROR";
         exit(0);
     }
-    while (!resList.eof()) {
-        getline(resList, data);
-        resName = data;
-        getline(resList, data);
-        temp = stoi(data);
-        phoneNum = temp;
-        getline(resList, data);
-        time = data;
-        getline(resList, data);
-        temp = stoi(data);
-        numReserved = temp;
-        getline(resList, data);
-        priority = data;
-        Reservation *res = new Reservation(resName, phoneNum, time, numReserved, priority);
-        Reservation::addReservation(res);
+    while (getline(resList, data)) {
+        if (!data.empty()) {
+            resName = data;
+            getline(resList, data);
+            temp = stoi(data);
+            phoneNum = temp;
+            getline(resList, data);
+            time = data;
+            getline(resList, data);
+            temp = stoi(data);
+            numReserved = temp;
+            getline(resList, data);
+            priority = data;
+            Reservation *res = new Reservation(resName, phoneNum, time, numReserved, priority);
+            Reservation::addReservation(res);
+        }
     }
     resList.close();
     return resHead;

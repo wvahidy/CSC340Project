@@ -39,25 +39,26 @@ void Restaurant::viewReservations(string filename) {
         cout << "ERROR";
         exit(0);
     }
-    while (!resList.eof()) {
-        cout << "Reservation " << resCount << " " << endl;
-        getline(resList, data);
-        cout << "Name: ";
-        cout << data << endl;
-        getline(resList, data);
-        cout << "Phone: ";
-        cout << data << endl;
-        getline(resList, data);
-        cout << "Time: ";
-        cout << data << endl;
-        getline(resList, data);
-        cout << "Reservation Size: ";
-        cout << data << endl;
-        getline(resList, data);
-        cout << "Priority: ";
-        cout << data << endl;
-        resCount++;
-        cout << endl;
+    while (getline(resList, data)) {
+        if (!data.empty()) {
+            cout << "Reservation #" << resCount << " " << endl;
+            cout << "Name: ";
+            cout << data << endl;
+            getline(resList, data);
+            cout << "Phone: ";
+            cout << data << endl;
+            getline(resList, data);
+            cout << "Time: ";
+            cout << data << endl;
+            getline(resList, data);
+            cout << "Reservation Size: ";
+            cout << data << endl;
+            getline(resList, data);
+            cout << "Priority: ";
+            cout << data << endl;
+            resCount++;
+            cout << endl;
+        }
     }
     resList.close();
 }
