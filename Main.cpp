@@ -60,6 +60,7 @@ int main() {
                 reservation->setNumReserved(numRes);
                 reservation->setPhoneNum(phone);
                 reservation->setPriority(priority);
+                Reservation::fileToLinkedList("reservationList.txt");
                 Reservation::addReservation(reservation);
                 break;
             case 3: 

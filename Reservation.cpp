@@ -110,7 +110,6 @@ Reservation* Reservation::fileToLinkedList(string filename) {
 void Reservation::updateReservationListFile() {
     ofstream reservationList;
     reservationList.open("reservationList.txt");
-    resHead = Reservation::fileToLinkedList("reservationList.txt");
     Reservation *current = resHead;
     while (current != nullptr)
     {
