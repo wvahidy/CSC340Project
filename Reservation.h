@@ -15,7 +15,7 @@ public:
     void setPrev(Reservation *newPrev);
     void setPriority(string newPriority);
     void setNumReserved(int newNumReserved);
-    void addReservation(Reservation *newRes);
+    static void addReservation(Reservation *newRes);
     string getTime() const;
     string getName() const;
     Reservation *getNext() const;
@@ -24,6 +24,7 @@ public:
     string getPriority() const;
     int getNumReserved() const;
     static string militaryToStandard(int time);
+    static Reservation* fileToLinkedList(string filename);
 private:
     static void updateReservationListFile();
     Reservation *next;

@@ -19,11 +19,11 @@ Reservation::Reservation() {
     next = nullptr;
     prev = nullptr;
 }
-Reservation::Reservation(string newName, int newTime, int numR, int newNum, string prio) {
+Reservation::Reservation(string newName, int newNum, int newTime, int numR, string prio) {
     resName = newName;
+    phoneNum = newNum;
     time = newTime;
     numReserved = numR;
-    phoneNum = newNum;
     priority = prio;
     next = nullptr;
     prev = nullptr;
@@ -56,6 +56,7 @@ void Reservation::addReservation(Reservation *res) {
         res->setNext(nullptr);
         resHead = res;
         resTail = res;
+        return;
     }
     resTail->setNext(res);
     res->setPrev(resTail);
@@ -71,9 +72,45 @@ int Reservation::getPhoneNum() const { return phoneNum; }
 string Reservation::getPriority() const { return priority; }
 int Reservation::getNumReserved() const { return numReserved; }
 
+Reservation* Reservation::fileToLinkedList(string filename) {
+    ifstream resList;
+    string data;
+    string resName;
+    int time;
+    int temp;
+    int numReserved;
+    int phoneNum;
+    string priority;
+    resList.open(filename);
+    if (!resList.is_open()) {
+        cout << "ERROR";
+        exit(0);
+    }
+    while (!resList.eof()) {
+        getline(resList, data);
+        resName = data;
+        getline(resList, data);
+        temp = stoi(data);
+        phoneNum = temp;
+        getline(resList, data);
+        temp = stoi(data);
+        time = temp;
+        getline(resList, data);
+        temp = stoi(data);
+        numReserved = temp;
+        getline(resList, data);
+        priority = data;
+        Reservation *res = new Reservation(resName, time, numReserved, phoneNum, priority);
+        Reservation::addReservation(res);
+    }
+    resList.close();
+    return resHead;
+}
+
 void Reservation::updateReservationListFile() {
     ofstream reservationList;
     reservationList.open("reservationList.txt");
+    resHead = Reservation::fileToLinkedList("reservationList.txt");
     Reservation *current = resHead;
     while (current != nullptr)
     {

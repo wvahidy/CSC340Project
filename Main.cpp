@@ -60,7 +60,7 @@ int main() {
                 reservation->setNumReserved(numRes);
                 reservation->setPhoneNum(phone);
                 reservation->setPriority(priority);
-                resHead->addReservation(reservation);
+                Reservation::addReservation(reservation);
                 break;
             case 3: 
                 break;
