@@ -118,7 +118,10 @@ void Reservation::updateReservationListFile() {
         reservationList << current->getTime() << endl;
         reservationList << current->getNumReserved() << endl;
         reservationList << current->getPriority() << endl;
-        current = current->next;
+        if (current->getNext() != nullptr) {
+            reservationList << endl;
+        }
+        current = current->getNext();
     }
     reservationList.close();
 }
