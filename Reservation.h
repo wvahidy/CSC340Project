@@ -7,7 +7,7 @@ using namespace std;
 class Reservation : public Restaurant {
 public:
     Reservation();
-    Reservation(string newName, int newTime, int numR, int newNum, string prio);
+    Reservation(string newName, int newNum, string newTime, int numR, string prio);
     void setResName(string newName);
     void setPhoneNum(int newNum);
     void setTime(string newTime);

@@ -19,7 +19,7 @@ Reservation::Reservation() {
     next = nullptr;
     prev = nullptr;
 }
-Reservation::Reservation(string newName, int newNum, int newTime, int numR, string prio) {
+Reservation::Reservation(string newName, int newNum, string newTime, int numR, string prio) {
     resName = newName;
     phoneNum = newNum;
     time = newTime;
@@ -76,7 +76,7 @@ Reservation* Reservation::fileToLinkedList(string filename) {
     ifstream resList;
     string data;
     string resName;
-    int time;
+    string time;
     int temp;
     int numReserved;
     int phoneNum;
@@ -93,14 +93,13 @@ Reservation* Reservation::fileToLinkedList(string filename) {
         temp = stoi(data);
         phoneNum = temp;
         getline(resList, data);
-        temp = stoi(data);
-        time = temp;
+        time = data;
         getline(resList, data);
         temp = stoi(data);
         numReserved = temp;
         getline(resList, data);
         priority = data;
-        Reservation *res = new Reservation(resName, time, numReserved, phoneNum, priority);
+        Reservation *res = new Reservation(resName, phoneNum, time, numReserved, priority);
         Reservation::addReservation(res);
     }
     resList.close();
@@ -117,7 +116,7 @@ void Reservation::updateReservationListFile() {
         reservationList << current->getPhoneNum() << endl;
         reservationList << current->getTime() << endl;
         reservationList << current->getNumReserved() << endl;
-        reservationList << current->getPriority();
+        reservationList << current->getPriority() << endl;
         current = current->next;
     }
     reservationList.close();

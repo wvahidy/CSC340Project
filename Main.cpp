@@ -45,20 +45,20 @@ int main() {
             case 2:
                 cout << "Name for Reservation: ";
                 cin >> resName;
+                cout << "Phone Number: ";
+                cin >> phone;
                 cout << "Time for Reservation (military): ";
                 cin >> time;
                 stdTime = Reservation::militaryToStandard(time);
                 cout << "Number of people for Reservation: ";
                 cin >> numRes;
-                cout << "Phone Number: ";
-                cin >> phone;
                 cout << "Reservation Priority (H or L): ";
                 cin >> priority;
                 reservation = new Reservation();
                 reservation->setResName(resName);
+                reservation->setPhoneNum(phone);
                 reservation->setTime(stdTime);
                 reservation->setNumReserved(numRes);
-                reservation->setPhoneNum(phone);
                 reservation->setPriority(priority);
                 Reservation::fileToLinkedList("reservationList.txt");
                 Reservation::addReservation(reservation);
