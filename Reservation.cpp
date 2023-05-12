@@ -102,10 +102,10 @@ string Reservation::militaryToStandard(int time) {
     newTime += to_string(minutes);
 
     if (afterNoon) {
-        newTime += "PM";
+        newTime += " PM";
     }
     else {
-        newTime += "AM";
+        newTime += " AM";
     }
     return newTime;
 }

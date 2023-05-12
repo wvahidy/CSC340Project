@@ -26,8 +26,7 @@ int main() {
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
     {
         cout << "\n--------------------------------------------\n"
-             << "WELCOME TO " << RESTAURANT_NAME << "\n"
-             << "Options menu: \n"
+             << RESTAURANT_NAME << " MANAGER MENU" << "\n"
              << " (1) View reservations\n"
              << " (2) Add a reservation\n"
              << " (3) Sort list by priority\n"

@@ -42,7 +42,7 @@ void Restaurant::viewReservations(string filename) {
     while (!resList.eof()) {
         cout << "Reservation " << resCount << " " << endl;
         for (int i = 0; i < 5; i++) {
-            resList >> data;
+            getline(resList, data);
             switch (i) {
                 case 0:
                     cout << "Name: ";
