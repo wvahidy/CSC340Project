@@ -89,7 +89,8 @@ Reservation* Reservation::fileToLinkedList(string filename) {
         cout << "ERROR";
         exit(0);
     }
-    while (getline(resList, data)) {
+    while (!resList.eof()) {
+        getline(resList, data);
         if (!data.empty()) {
             resName = data;
             getline(resList, data);

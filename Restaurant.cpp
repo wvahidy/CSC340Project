@@ -39,7 +39,8 @@ void Restaurant::viewReservations(string filename) {
         cout << "ERROR";
         exit(0);
     }
-    while (getline(resList, data)) {
+    while (!resList.eof()) {
+        getline(resList, data);
         if (!data.empty()) {
             cout << "Reservation #" << resCount << " " << endl;
             cout << "Name: ";
