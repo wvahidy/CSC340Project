@@ -102,7 +102,7 @@ void Reservation::updateReservationListFile() {
         reservationList << current->getPhoneNum() << endl;
         reservationList << current->getTime() << endl;
         reservationList << current->getNumReserved() << endl;
-        reservationList << current->getPriority() << endl;
+        reservationList << current->getPriority();
         current = current->next;
     }
     reservationList.close();
