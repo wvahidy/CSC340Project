@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 #include "Reservation.h"
 using namespace std;
 
@@ -69,6 +70,27 @@ Reservation *Reservation::getPrev() const { return prev; }
 int Reservation::getPhoneNum() const { return phoneNum; }
 string Reservation::getPriority() const { return priority; }
 int Reservation::getNumReserved() const { return numReserved; }
+
+string Reservation::militaryToStandard(int time) {
+    string newTime;
+    int hours = time / 100;
+    int minutes = time % 100;
+    bool afterNoon = hours >= 12;
+
+    if (hours > 12) {
+        hours -= 12;
+    }
+    newTime = to_string(hours) + ":";
+    if (minutes < 10)
+        newTime += "0";
+    newTime += minutes;
+
+    if (afterNoon)
+        newTime += " PM";
+    else
+        newTime += " AM";
+    return newTime;
+}
 
 void Reservation::updateReservationListFile() {
     ofstream reservationList;

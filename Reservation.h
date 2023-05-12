@@ -23,6 +23,7 @@ public:
     int getPhoneNum() const;
     string getPriority() const;
     int getNumReserved() const;
+    string militaryToStandard(int time);
 private:
     static void updateReservationListFile();
     Reservation *next;
