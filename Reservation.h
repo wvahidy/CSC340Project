@@ -15,7 +15,7 @@ public:
     void setPrev(Reservation *newPrev);
     void setPriority(string newPriority);
     void setNumReserved(int newNumReserved);
-    static void addReservation(Reservation *newRes);
+    static void addReservation(Reservation *end, string newName, int newNum, string newTime, int numR, string prio);
     string getTime() const;
     string getName() const;
     Reservation *getNext() const;

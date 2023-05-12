@@ -49,8 +49,9 @@ void Reservation::setTime(string newTime) {
 void Reservation::setNumReserved(int newNumReserved) {
     this->numReserved = newNumReserved;
 }
-void Reservation::addReservation(Reservation *res) {
-    if (resTail == nullptr)
+void Reservation::addReservation(Reservation *end, string newName, int newNum, string newTime, int numR, string prio) {
+    Reservation *res = new Reservation(newName, newNum, newTime, numR, prio);
+    if (end == nullptr)
     {
         res->setPrev(nullptr);
         res->setNext(nullptr);
@@ -82,6 +83,8 @@ Reservation* Reservation::fileToLinkedList(string filename) {
     int phoneNum;
     string priority;
     resList.open(filename);
+    resHead = nullptr;
+    resTail = nullptr;
     if (!resList.is_open()) {
         cout << "ERROR";
         exit(0);
@@ -99,8 +102,7 @@ Reservation* Reservation::fileToLinkedList(string filename) {
             numReserved = temp;
             getline(resList, data);
             priority = data;
-            Reservation *res = new Reservation(resName, phoneNum, time, numReserved, priority);
-            Reservation::addReservation(res);
+            Reservation::addReservation(resTail, resName, phoneNum, time, numReserved, priority);
         }
     }
     resList.close();
