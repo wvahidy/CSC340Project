@@ -12,7 +12,7 @@ Reservation *resTail = nullptr;
 
 Reservation::Reservation() {
     resName = "";
-    time = 0;
+    time = "";
     numReserved = 0;
     phoneNum = 0;
     priority = "";
@@ -43,7 +43,7 @@ void Reservation::setPrev(Reservation *newPrev) {
 void Reservation::setPriority(string newPriority) {
     this->priority = newPriority;
 }
-void Reservation::setTime(int newTime) {
+void Reservation::setTime(string newTime) {
     this->time = newTime;
 }
 void Reservation::setNumReserved(int newNumReserved) {
@@ -63,34 +63,13 @@ void Reservation::addReservation(Reservation *res) {
     resTail = res;
     updateReservationListFile();
 }
-int Reservation::getTime() const { return time; }
+string Reservation::getTime() const { return time; }
 string Reservation::getName() const { return resName; }
 Reservation *Reservation::getNext() const { return next; }
 Reservation *Reservation::getPrev() const { return prev; }
 int Reservation::getPhoneNum() const { return phoneNum; }
 string Reservation::getPriority() const { return priority; }
 int Reservation::getNumReserved() const { return numReserved; }
-
-string Reservation::militaryToStandard(int time) {
-    string newTime;
-    int hours = time / 100;
-    int minutes = time % 100;
-    bool afterNoon = hours >= 12;
-
-    if (hours > 12) {
-        hours -= 12;
-    }
-    newTime = to_string(hours) + ":";
-    if (minutes < 10)
-        newTime += "0";
-    newTime += minutes;
-
-    if (afterNoon)
-        newTime += " PM";
-    else
-        newTime += " AM";
-    return newTime;
-}
 
 void Reservation::updateReservationListFile() {
     ofstream reservationList;
@@ -106,4 +85,27 @@ void Reservation::updateReservationListFile() {
         current = current->next;
     }
     reservationList.close();
+}
+
+string Reservation::militaryToStandard(int time) {
+    string newTime;
+    int hours = time / 100;
+    int minutes = time % 100;
+    bool afterNoon = hours >= 12;
+
+    if (hours > 12) {
+        hours -= 12;
+    }
+    newTime = to_string(hours) + ":";
+    if (minutes < 10) {
+        newTime += "0";}
+    newTime += to_string(minutes);
+
+    if (afterNoon) {
+        newTime += "PM";
+    }
+    else {
+        newTime += "AM";
+    }
+    return newTime;
 }

@@ -17,6 +17,7 @@ int main() {
     aRestaurant.setCurrentAvailable(MAX_OCCUPANCY);
     string resName;
     int time;
+    string stdTime;
     int numRes;
     int phone;
     string priority;
@@ -27,11 +28,11 @@ int main() {
         cout << "\n--------------------------------------------\n"
              << "WELCOME TO " << RESTAURANT_NAME << "\n"
              << "Options menu: \n"
-             << " (1)View reservations\n"
-             << " (2)Add a reservation\n"
-             << " (3)Sort list by priority\n"
-             << " (4)Sort list by time\n"
-             << " (5)Set number of seats per table\n"
+             << " (1) View reservations\n"
+             << " (2) Add a reservation\n"
+             << " (3) Sort list by priority\n"
+             << " (4) Sort list by time\n"
+             << " (5) Set number of seats per table\n"
              << "Enter a number from 1 to " << NUM_OPTIONS_S << ", or 0 to exit: " << endl;
         cin >> menuChoice;
         switch (menuChoice) {
@@ -47,6 +48,7 @@ int main() {
                 cin >> resName;
                 cout << "Time for Reservation (military): ";
                 cin >> time;
+                stdTime = Reservation::militaryToStandard(time);
                 cout << "Number of people for Reservation: ";
                 cin >> numRes;
                 cout << "Phone Number: ";
@@ -55,7 +57,7 @@ int main() {
                 cin >> priority;
                 reservation = new Reservation();
                 reservation->setResName(resName);
-                reservation->setTime(time);
+                reservation->setTime(stdTime);
                 reservation->setNumReserved(numRes);
                 reservation->setPhoneNum(phone);
                 reservation->setPriority(priority);
