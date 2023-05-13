@@ -12,17 +12,19 @@ Reservation *resTail = nullptr;
 
 Reservation::Reservation() {
     resName = "";
-    time = "";
+    mTime = 0;
+    sTime = "";
     numReserved = 0;
     phoneNum = 0;
     priority = "";
     next = nullptr;
     prev = nullptr;
 }
-Reservation::Reservation(string newName, int newNum, string newTime, int numR, string prio) {
+Reservation::Reservation(string newName, int newNum, int newMTime, string newSTime, int numR, string prio) {
     resName = newName;
     phoneNum = newNum;
-    time = newTime;
+    mTime = newMTime;
+    sTime = newSTime;
     numReserved = numR;
     priority = prio;
     next = nullptr;
@@ -43,14 +45,17 @@ void Reservation::setPrev(Reservation *newPrev) {
 void Reservation::setPriority(string newPriority) {
     this->priority = newPriority;
 }
-void Reservation::setTime(string newTime) {
-    this->time = newTime;
+void Reservation::setMilitaryTime(int newMTime) {
+    this->mTime = newMTime;
+}
+void Reservation::setStandardTime(string newSTime) {
+    this->sTime = newSTime;
 }
 void Reservation::setNumReserved(int newNumReserved) {
     this->numReserved = newNumReserved;
 }
-void Reservation::addReservation(Reservation *end, string newName, int newNum, string newTime, int numR, string prio) {
-    Reservation *res = new Reservation(newName, newNum, newTime, numR, prio);
+void Reservation::addReservation(Reservation *end, string newName, int newNum, int mTime, string sTime, int numR, string prio) {
+    Reservation *res = new Reservation(newName, newNum, mTime, sTime, numR, prio);
     if (end == nullptr)
     {
         res->setPrev(nullptr);
@@ -65,7 +70,8 @@ void Reservation::addReservation(Reservation *end, string newName, int newNum, s
     resTail = res;
     updateReservationListFile();
 }
-string Reservation::getTime() const { return time; }
+int Reservation::getMilitaryTime() const { return mTime; }
+string Reservation::getStandardTime() const { return sTime;}
 string Reservation::getName() const { return resName; }
 Reservation *Reservation::getNext() const { return next; }
 Reservation *Reservation::getPrev() const { return prev; }
@@ -77,7 +83,8 @@ Reservation* Reservation::fileToLinkedList(string filename) {
     ifstream resList;
     string data;
     string resName;
-    string time;
+    int mTime;
+    string sTime;
     int temp;
     int numReserved;
     int phoneNum;
@@ -97,13 +104,16 @@ Reservation* Reservation::fileToLinkedList(string filename) {
             temp = stoi(data);
             phoneNum = temp;
             getline(resList, data);
-            time = data;
+            temp = stoi(data);
+            mTime = temp;
+            getline(resList, data);
+            sTime = data;
             getline(resList, data);
             temp = stoi(data);
             numReserved = temp;
             getline(resList, data);
             priority = data;
-            Reservation::addReservation(resTail, resName, phoneNum, time, numReserved, priority);
+            Reservation::addReservation(resTail, resName, phoneNum, mTime, sTime, numReserved, priority);
         }
     }
     resList.close();
@@ -118,7 +128,8 @@ void Reservation::updateReservationListFile() {
     {
         reservationList << current->getName() << endl;
         reservationList << current->getPhoneNum() << endl;
-        reservationList << current->getTime() << endl;
+        reservationList << current->getMilitaryTime() << endl;
+        reservationList << current->getStandardTime() << endl;
         reservationList << current->getNumReserved() << endl;
         reservationList << current->getPriority() << endl;
         if (current->getNext() != nullptr) {

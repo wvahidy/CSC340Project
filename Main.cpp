@@ -16,7 +16,7 @@ int main() {
     Restaurant aRestaurant;
     aRestaurant.setCurrentAvailable(MAX_OCCUPANCY);
     string resName;
-    int time;
+    int mTime;
     string stdTime;
     int numRes;
     int phone;
@@ -47,14 +47,14 @@ int main() {
                 cout << "Phone Number: ";
                 cin >> phone;
                 cout << "Time for Reservation (military): ";
-                cin >> time;
-                stdTime = Reservation::militaryToStandard(time);
+                cin >> mTime;
+                stdTime = Reservation::militaryToStandard(mTime);
                 cout << "Number of people for Reservation: ";
                 cin >> numRes;
                 cout << "Reservation Priority (H or L): ";
                 cin >> priority;
                 resHead = Reservation::fileToLinkedList("reservationList.txt");
-                Reservation::addReservation(resTail, resName, phone, stdTime, numRes, priority);
+                Reservation::addReservation(resTail, resName, phone, mTime, stdTime, numRes, priority);
                 break;
             case 3: 
                 break;

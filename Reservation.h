@@ -7,16 +7,18 @@ using namespace std;
 class Reservation : public Restaurant {
 public:
     Reservation();
-    Reservation(string newName, int newNum, string newTime, int numR, string prio);
+    Reservation(string newName, int newNum, int mTime, string newTime, int numR, string prio);
     void setResName(string newName);
     void setPhoneNum(int newNum);
-    void setTime(string newTime);
+    void setMilitaryTime(int newMTime);
+    void setStandardTime(string newSTime);
     void setNext(Reservation *newNext);
     void setPrev(Reservation *newPrev);
     void setPriority(string newPriority);
     void setNumReserved(int newNumReserved);
-    static void addReservation(Reservation *end, string newName, int newNum, string newTime, int numR, string prio);
-    string getTime() const;
+    static void addReservation(Reservation *end, string newName, int newNum, int mTime, string newTime, int numR, string prio);
+    int getMilitaryTime() const;
+    string getStandardTime() const;
     string getName() const;
     Reservation *getNext() const;
     Reservation *getPrev() const;
@@ -30,7 +32,8 @@ private:
     Reservation *next;
     Reservation *prev;
     string resName;
-    string time;
+    int mTime;
+    string sTime;
     int numReserved;
     int phoneNum;
     string priority;
