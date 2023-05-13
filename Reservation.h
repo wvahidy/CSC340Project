@@ -27,6 +27,8 @@ public:
     int getNumReserved() const;
     static string militaryToStandard(int time);
     static Reservation* fileToLinkedList(string filename);
+    static Reservation *sortByPriority(Reservation *start);
+    static Reservation *sortByTime(Reservation *start);
 private:
     static void updateReservationListFile();
     Reservation *next;

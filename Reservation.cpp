@@ -162,3 +162,10 @@ string Reservation::militaryToStandard(int time) {
     }
     return newTime;
 }
+
+static Reservation *sortByPriority(Reservation *start) {
+    return resHead;
+}
+static Reservation *sortByTime(Reservation *start) {
+    return resHead;
+}
