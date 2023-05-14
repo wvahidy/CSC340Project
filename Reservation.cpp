@@ -211,4 +211,22 @@ void Reservation::sortByPriority(Reservation *start) {
 }
 
 void Reservation::sortByTime(Reservation *start) {
+    Reservation *current = start;
+    Reservation *track = start;
+    Reservation *highP = start;
+    while (current != nullptr) {
+        highP = current;
+        track = current->getNext();
+        while (track != nullptr) {
+            if (track->getMilitaryTime() < highP->getMilitaryTime()) {
+                highP = track;  
+            }
+            track = track->next;
+        }
+        if (highP->getMilitaryTime() < current->getMilitaryTime()) {
+            swap(highP, current);
+        }
+        current = current->getNext();
+    }
+    updateReservationListFile();
 }

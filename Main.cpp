@@ -60,6 +60,7 @@ int main() {
                 Reservation::sortByPriority(resHead);
                 break;
             case 4:
+                Reservation::sortByTime(resHead);
                 break;
             case 5:
                 break;
