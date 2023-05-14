@@ -72,7 +72,7 @@ void Reservation::addReservation(Reservation *end, string newName, int newNum, i
 }
 int Reservation::getMilitaryTime() const { return mTime; }
 string Reservation::getStandardTime() const { return sTime;}
-string Reservation::getName() const { return resName; }
+string Reservation::getResName() const { return resName; }
 Reservation *Reservation::getNext() const { return next; }
 Reservation *Reservation::getPrev() const { return prev; }
 int Reservation::getPhoneNum() const { return phoneNum; }
@@ -113,7 +113,7 @@ Reservation* Reservation::fileToLinkedList(string filename) {
             numReserved = temp;
             getline(resList, data);
             priority = data;
-            Reservation::addReservation(resTail, resName, phoneNum, mTime, sTime, numReserved, priority);
+            addReservation(resTail, resName, phoneNum, mTime, sTime, numReserved, priority);
         }
     }
     resList.close();
@@ -126,7 +126,7 @@ void Reservation::updateReservationListFile() {
     Reservation *current = resHead;
     while (current != nullptr)
     {
-        reservationList << current->getName() << endl;
+        reservationList << current->getResName() << endl;
         reservationList << current->getPhoneNum() << endl;
         reservationList << current->getMilitaryTime() << endl;
         reservationList << current->getStandardTime() << endl;
@@ -163,9 +163,52 @@ string Reservation::militaryToStandard(int time) {
     return newTime;
 }
 
-static Reservation *sortByPriority(Reservation *start) {
-    return resHead;
+void Reservation::swap(Reservation *first, Reservation *second) {
+    string tempName = first->getResName();
+    first->setResName(second->getResName());
+    second->setResName(tempName);
+
+    int tempPhone = first->getPhoneNum();
+    first->setPhoneNum(second->getPhoneNum());
+    second->setPhoneNum(tempPhone);
+
+    int tempMilitary = first->getMilitaryTime();
+    first->setMilitaryTime(second->getMilitaryTime());
+    second->setMilitaryTime(tempMilitary);
+
+    string tempStandard = first->getStandardTime();
+    first->setStandardTime(second->getStandardTime());
+    second->setStandardTime(tempStandard);
+
+    int tempNum = first->getNumReserved();
+    first->setNumReserved(second->getNumReserved());
+    second->setNumReserved(tempNum);
+
+    string tempPrio = first->getPriority();
+    first->setPriority(second->getPriority());
+    second->setPriority(tempPrio);
 }
-static Reservation *sortByTime(Reservation *start) {
-    return resHead;
+
+void Reservation::sortByPriority(Reservation *start) {
+    Reservation *current = start;
+    Reservation *track = start;
+    Reservation *highP = start;
+    while (current != nullptr) {
+        highP = current;
+        track = current->getNext();
+        while (track != nullptr) {
+            if (track->getPriority() < highP->getPriority()) {
+                highP = track;  
+            }
+            track = track->next;
+        }
+        if (highP->getPriority() < current->getPriority()) {
+            swap(highP, current);
+        }
+        current = current->getNext();
+    }
+    updateReservationListFile();
+}
+
+void Reservation::sortByTime(Reservation *start) {
 }

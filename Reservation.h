@@ -1,10 +1,9 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 #include <string>
-#include "Restaurant.h"
 using namespace std;
 
-class Reservation : public Restaurant {
+class Reservation {
 public:
     Reservation();
     Reservation(string newName, int newNum, int mTime, string newTime, int numR, string prio);
@@ -19,7 +18,7 @@ public:
     static void addReservation(Reservation *end, string newName, int newNum, int mTime, string newTime, int numR, string prio);
     int getMilitaryTime() const;
     string getStandardTime() const;
-    string getName() const;
+    string getResName() const;
     Reservation *getNext() const;
     Reservation *getPrev() const;
     int getPhoneNum() const;
@@ -27,10 +26,11 @@ public:
     int getNumReserved() const;
     static string militaryToStandard(int time);
     static Reservation* fileToLinkedList(string filename);
-    static Reservation *sortByPriority(Reservation *start);
-    static Reservation *sortByTime(Reservation *start);
+    static void sortByPriority(Reservation *start);
+    static void sortByTime(Reservation *start);
 private:
     static void updateReservationListFile();
+    static void swap(Reservation *first, Reservation *second);
     Reservation *next;
     Reservation *prev;
     string resName;

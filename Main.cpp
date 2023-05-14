@@ -22,6 +22,7 @@ int main() {
     int phone;
     string priority;
     int menuChoice = 0;
+    resHead = Reservation::fileToLinkedList("reservationList.txt");
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
     {
         cout << "\n--------------------------------------------\n"
@@ -53,10 +54,10 @@ int main() {
                 cin >> numRes;
                 cout << "Reservation Priority (H or L): ";
                 cin >> priority;
-                resHead = Reservation::fileToLinkedList("reservationList.txt");
                 Reservation::addReservation(resTail, resName, phone, mTime, stdTime, numRes, priority);
                 break;
             case 3: 
+                Reservation::sortByPriority(resHead);
                 break;
             case 4:
                 break;
