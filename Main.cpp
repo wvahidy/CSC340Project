@@ -27,7 +27,8 @@ int main() {
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
     {
         cout << "\n--------------------------------------------\n"
-             << RESTAURANT_NAME << " MANAGER MENU" << "\n"
+             << RESTAURANT_NAME << " Manager Menu"
+             << "\n--------------------------------------------\n"
              << " (1) View reservations\n"
              << " (2) Add a reservation\n"
              << " (3) Sort list by priority\n"
@@ -39,7 +40,7 @@ int main() {
         cout << endl;
         switch (menuChoice) {
             case 0:
-                cout << "Goodbye!" << endl;
+                cout << "Closing the restaurant. Goodbye!" << endl;
                 exit(0);
                 break;
             case 1:
@@ -50,12 +51,12 @@ int main() {
                 cin >> resName;
                 cout << "Phone Number: ";
                 cin >> phone;
-                cout << "Time for Reservation (military): ";
+                cout << "Time for Reservation (military time): ";
                 cin >> mTime;
                 stdTime = Reservation::militaryToStandard(mTime);
                 cout << "Number of people for Reservation: ";
                 cin >> numRes;
-                cout << "Reservation Priority (H or L): ";
+                cout << "Reservation Priority (H)igh or (L)ow: ";
                 cin >> priority;
                 Reservation::addReservation(resTail, resName, phone, mTime, stdTime, numRes, priority);
                 break;
