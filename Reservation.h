@@ -3,6 +3,9 @@
 #include <string>
 using namespace std;
 
+extern Reservation *resHead;
+extern Reservation *resTail;
+
 class Reservation {
 public:
     Reservation();
@@ -41,8 +44,5 @@ private:
     int phoneNum;
     string priority;
 };
-
-extern Reservation *resHead;
-extern Reservation *resTail;
 
 #endif

@@ -6,5 +6,43 @@
 #include "Table.h"
 using namespace std;
 
-Table *tableHead = nullptr;
-Table *tableTail = nullptr;
+extern Table *tableHead = nullptr;
+extern Table *tableTail = nullptr;
+
+Table::Table() {
+    status = 0;
+    numSeats = 0;
+}
+
+Table::Table(int newStatus, int newNum) {
+    status = newStatus;
+    numSeats = newNum;
+} 
+
+void Table::setStatus(int newStatus) {
+    this->status = newStatus;
+}
+
+void Table::setNumSeats(int newNum) {
+    this->numSeats = newNum;
+}
+
+void Table::setNext(Table *newNext) {
+    next = newNext;
+}
+
+void Table::setPrev(Table *newPrev) {
+    prev = newPrev;
+}
+
+int Table::getStatus() const {return status;}
+Table* Table::getNext() const {return next;}
+Table* Table::getPrev() const {return prev;}
+
+void Table::addTable(int newStatus, int numSeats) {
+    
+}
+
+void Table::assignReservation(Reservation *res) {
+
+}
