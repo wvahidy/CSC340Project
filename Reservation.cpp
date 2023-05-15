@@ -79,6 +79,22 @@ int Reservation::getPhoneNum() const { return phoneNum; }
 string Reservation::getPriority() const { return priority; }
 int Reservation::getNumReserved() const { return numReserved; }
 
+void Reservation::printReservationInfo() {
+    cout << "Name: ";
+    cout << this->getResName() << endl;
+    cout << "Phone: ";
+    cout << this->getPhoneNum() << endl;
+    cout << "Military Time: ";
+    cout << this->getMilitaryTime() << endl;
+    cout << "Standard Time: ";
+    cout << this->getStandardTime() << endl;
+    cout << "Reservation Size: ";
+    cout << this->getNumReserved() << endl;
+    cout << "Priority: ";
+    cout << this->getPriority() << endl;
+    cout << endl;
+}
+
 Reservation* Reservation::fileToLinkedList(string filename) {
     ifstream resList;
     string data;

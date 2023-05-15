@@ -19,8 +19,8 @@ public:
     int getMilitaryTime() const;
     string getStandardTime() const;
     string getResName() const;
-    Reservation *getNext() const;
-    Reservation *getPrev() const;
+    Reservation* getNext() const;
+    Reservation* getPrev() const;
     int getPhoneNum() const;
     string getPriority() const;
     int getNumReserved() const;
@@ -28,6 +28,7 @@ public:
     static Reservation* fileToLinkedList(string filename);
     static void sortByPriority(Reservation *start);
     static void sortByTime(Reservation *start);
+    void printReservationInfo();
 private:
     static void updateReservationListFile();
     static void swap(Reservation *first, Reservation *second);

@@ -15,6 +15,7 @@ using namespace std;
 int main() {
     Restaurant aRestaurant;
     aRestaurant.setCurrentAvailable(MAX_OCCUPANCY);
+    string nameKey;
     string resName;
     int mTime;
     string stdTime;
@@ -32,8 +33,10 @@ int main() {
              << " (3) Sort list by priority\n"
              << " (4) Sort list by time\n"
              << " (5) Set number of seats per table\n"
+             << " (6) Search reservations\n"
              << "Enter a number from 1 to " << NUM_OPTIONS_S << ", or 0 to exit: " << endl;
         cin >> menuChoice;
+        cout << endl;
         switch (menuChoice) {
             case 0:
                 cout << "Goodbye!" << endl;
@@ -63,6 +66,11 @@ int main() {
                 Reservation::sortByTime(resHead);
                 break;
             case 5:
+                break;
+            case 6:
+                cout << "Search: ";
+                cin >> nameKey;
+                Restaurant::searchName(resHead, nameKey);
                 break;
             default: 
                 cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
