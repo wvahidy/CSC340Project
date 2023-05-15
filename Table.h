@@ -18,7 +18,7 @@ class Table : public Reservation, public Restaurant {
         int getStatus() const;
         Table* getNext() const;
         Table* getPrev() const;
-        static void addTable(int newStatus, int numSeats);
+        static void addTable(Table *end, int newStatus, int numSeats);
         void assignReservation(Reservation* res);
     private:
         int status = 0;

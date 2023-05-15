@@ -39,10 +39,22 @@ int Table::getStatus() const {return status;}
 Table* Table::getNext() const {return next;}
 Table* Table::getPrev() const {return prev;}
 
-void Table::addTable(int newStatus, int numSeats) {
-    
+void Table::addTable(Table *end, int newStatus, int numSeats) {
+    Table *table = new Table(newStatus, numSeats);
+    if (end == nullptr)
+    {
+        table->setPrev(nullptr);
+        table->setNext(nullptr);
+        tableHead = table;
+        tableTail = table;
+        return;
+    }
+    tableTail->setNext(table);
+    table->setPrev(tableTail);
+    table->setNext(nullptr);
+    tableTail = table;
 }
 
-void Table::assignReservation(Reservation *res) {
+void Table::assignReservation(Reservation *table) {
 
 }
