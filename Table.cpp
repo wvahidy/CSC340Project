@@ -6,8 +6,8 @@
 #include "Table.h"
 using namespace std;
 
-extern Table *tableHead = nullptr;
-extern Table *tableTail = nullptr;
+Table *tableHead = nullptr;
+Table *tableTail = nullptr;
 
 Table::Table() {
     status = 0;

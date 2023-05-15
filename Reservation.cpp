@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include "Reservation.h"
+#include "Restaurant.h"
 using namespace std;
 
 Reservation *resHead = nullptr;

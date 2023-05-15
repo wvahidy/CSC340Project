@@ -4,9 +4,6 @@
 #include "Restaurant.h"
 using namespace std;
 
-extern Table *tableHead;
-extern Table *tableTail;
-
 class Table : public Reservation, public Restaurant {
     public:
         Table();
@@ -26,4 +23,8 @@ class Table : public Reservation, public Restaurant {
         Table *next;
         Table *prev;
 };
+
+extern Table *tableHead;
+extern Table *tableTail;
+
 #endif
