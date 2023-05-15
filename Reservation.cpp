@@ -55,8 +55,9 @@ void Reservation::setStandardTime(string newSTime) {
 void Reservation::setNumReserved(int newNumReserved) {
     this->numReserved = newNumReserved;
 }
-void Reservation::addReservation(Reservation *end, string newName, int newNum, int mTime, string sTime, int numR, string prio) {
+void Reservation::addReservation(Restaurant store, Reservation *end, string newName, int newNum, int mTime, string sTime, int numR, string prio) {
     Reservation *res = new Reservation(newName, newNum, mTime, sTime, numR, prio);
+    store.decCurrentAvailable(numR);
     if (end == nullptr)
     {
         res->setPrev(nullptr);
@@ -96,7 +97,7 @@ void Reservation::printReservationInfo() {
     cout << endl;
 }
 
-Reservation* Reservation::fileToLinkedList(string filename) {
+Reservation* Reservation::fileToLinkedList(Restaurant store, string filename) {
     ifstream resList;
     string data;
     string resName;
@@ -130,7 +131,7 @@ Reservation* Reservation::fileToLinkedList(string filename) {
             numReserved = temp;
             getline(resList, data);
             priority = data;
-            addReservation(resTail, resName, phoneNum, mTime, sTime, numReserved, priority);
+            addReservation(store, resTail, resName, phoneNum, mTime, sTime, numReserved, priority);
         }
     }
     resList.close();

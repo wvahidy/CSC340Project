@@ -23,7 +23,7 @@ int main() {
     int phone;
     string priority;
     int menuChoice = 0;
-    resHead = Reservation::fileToLinkedList("reservationList.txt");
+    resHead = Reservation::fileToLinkedList(aRestaurant, "reservationList.txt");
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
     {
         cout << "\n--------------------------------------------\n"
@@ -58,7 +58,18 @@ int main() {
                 cin >> numRes;
                 cout << "Reservation Priority (H)igh or (L)ow: ";
                 cin >> priority;
-                Reservation::addReservation(resTail, resName, phone, mTime, stdTime, numRes, priority);
+                if (aRestaurant.getCurrentAvailable() - numRes == 0) {
+                    Reservation::addReservation(aRestaurant, resTail, resName, phone, mTime, stdTime, numRes, priority);
+                    cout << "Reservation Created. Restaurant now at full capacity. " << endl;
+                    cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
+                }
+                else if (aRestaurant.getCurrentAvailable() - numRes < 0) {
+                    cout << "Reservation Failed. Restaurant full capacity. " << endl;
+                    cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
+                }
+                Reservation::addReservation(aRestaurant, resTail, resName, phone, mTime, stdTime, numRes, priority);
+                cout << "Reservation Created. " << endl;
+                cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
                 break;
             case 3: 
                 Reservation::sortByPriority(resHead);
