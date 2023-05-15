@@ -22,6 +22,7 @@ int main() {
     int numRes;
     int phone;
     string priority;
+    Reservation *searchRes;
     int menuChoice = 0;
     resHead = Reservation::fileToLinkedList(aRestaurant, "reservationList.txt");
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
@@ -73,16 +74,19 @@ int main() {
                 break;
             case 3: 
                 Reservation::sortByPriority(resHead);
+                cout << "Reservations successfully sorted by priority." << endl;
                 break;
             case 4:
                 Reservation::sortByTime(resHead);
+                cout << "Reservations successfully sorted by time." << endl;
                 break;
             case 5:
                 break;
             case 6:
                 cout << "Search: ";
                 cin >> nameKey;
-                Restaurant::searchName(resHead, nameKey);
+                searchRes = Restaurant::searchName(resHead, nameKey);
+                cout << searchRes->getResName() << "'s reservation found." << endl;
                 break;
             default: 
                 cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
