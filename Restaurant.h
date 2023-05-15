@@ -12,6 +12,7 @@ class Restaurant {
         void viewReservations(string filename);
     private:
         int currentAvailable;
+        friend class Reservation;
 };
 
 #endif
