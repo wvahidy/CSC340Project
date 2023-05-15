@@ -6,7 +6,6 @@
 #include "Restaurant.h"
 #include "Reservation.h"
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
@@ -68,20 +67,6 @@ void Restaurant::viewReservations(string filename) {
         }
     }
     resList.close();
-}
-
-Reservation* Restaurant::searchName(Reservation *start, string key) {
-    Reservation *current = start;
-    transform(key.begin(), key.end(), key.begin(), ::tolower);
-    while (current != nullptr) {
-        if (current->getResName() == key) {
-            current->printReservationInfo();
-            return current;
-        }
-        current = current->getNext();
-    }
-    cout << "No results found. ";
-    return nullptr;
 }
 
 int Restaurant::getCurrentAvailable() const { return currentAvailable; }

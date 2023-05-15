@@ -24,7 +24,7 @@ int main() {
     string priority;
     Reservation *searchRes;
     int menuChoice = 0;
-    resHead = Reservation::fileToLinkedList(aRestaurant, "reservationList.txt");
+    resHead = Reservation::fileToLinkedList("reservationList.txt");
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
     {
         cout << "\n--------------------------------------------\n"
@@ -60,7 +60,7 @@ int main() {
                 cout << "Reservation Priority (H)igh or (L)ow: ";
                 cin >> priority;
                 if (aRestaurant.getCurrentAvailable() - numRes == 0) {
-                    Reservation::addReservation(aRestaurant, resTail, resName, phone, mTime, stdTime, numRes, priority);
+                    Reservation::addReservation(resTail, resName, phone, mTime, stdTime, numRes, priority);
                     cout << "Reservation Created. Restaurant now at full capacity. " << endl;
                     cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
                 }
@@ -68,7 +68,7 @@ int main() {
                     cout << "Reservation Failed. Restaurant full capacity. " << endl;
                     cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
                 }
-                Reservation::addReservation(aRestaurant, resTail, resName, phone, mTime, stdTime, numRes, priority);
+                Reservation::addReservation(resTail, resName, phone, mTime, stdTime, numRes, priority);
                 cout << "Reservation Created. " << endl;
                 cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
                 break;
@@ -85,7 +85,7 @@ int main() {
             case 6:
                 cout << "Search: ";
                 cin >> nameKey;
-                searchRes = Restaurant::searchName(resHead, nameKey);
+                searchRes = Reservation::searchName(resHead, nameKey);
                 cout << searchRes->getResName() << "'s reservation found." << endl;
                 break;
             default: 
