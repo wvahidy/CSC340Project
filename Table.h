@@ -16,6 +16,7 @@ class Table : public Reservation {
         Table* getPrev() const;
         static void addTable(Table *end, int newStatus, int numSeats);
         void assignReservation(Reservation* res);
+        static Table* fileToLinkedList(string filename);
     private:
         int status = 0;
         int numSeats = 0;

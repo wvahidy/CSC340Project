@@ -12,11 +12,15 @@ Table *tableTail = nullptr;
 Table::Table() {
     status = 0;
     numSeats = 0;
+    next = nullptr;
+    prev = nullptr;
 }
 
 Table::Table(int newStatus, int newNum) {
     status = newStatus;
     numSeats = newNum;
+    next = nullptr;
+    prev = nullptr;
 } 
 
 void Table::setStatus(int newStatus) {
@@ -56,5 +60,33 @@ void Table::addTable(Table *end, int newStatus, int numSeats) {
 }
 
 void Table::assignReservation(Reservation *table) {
+    this->assigned = table;
+}
 
+Table* Table::fileToLinkedList(string filename) {
+    ifstream tableList;
+    string data;
+    int temp;
+    int status;
+    int numSeats;
+    tableList.open(filename);
+    tableHead = nullptr;
+    tableTail = nullptr;
+    if (!tableList.is_open()) {
+        cout << "ERROR";
+        exit(0);
+    }
+    while (!tableList.eof()) {
+        getline(tableList, data);
+        if (!data.empty()) {
+            temp = stoi(data);
+            status = temp;
+            getline(tableList, data);
+            temp = stoi(data);
+            numSeats = temp;
+            addTable(tableTail, status, numSeats);
+        }
+    }
+    tableList.close();
+    return tableHead;
 }
