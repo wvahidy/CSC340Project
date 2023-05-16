@@ -87,8 +87,6 @@ void Reservation::printReservationInfo() {
     cout << this->getResName() << endl;
     cout << "Phone: ";
     cout << this->getPhoneNum() << endl;
-    cout << "Military Time: ";
-    cout << this->getMilitaryTime() << endl;
     cout << "Standard Time: ";
     cout << this->getStandardTime() << endl;
     cout << "Reservation Size: ";
