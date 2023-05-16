@@ -1,10 +1,9 @@
 #ifndef TABLE_H
 #define TABLE_H
 #include "Reservation.h"
-#include "Restaurant.h"
 using namespace std;
 
-class Table : public Reservation, public Restaurant {
+class Table : public Reservation {
     public:
         Table();
         Table(int newStatus, int numSeats);
@@ -22,6 +21,7 @@ class Table : public Reservation, public Restaurant {
         int numSeats = 0;
         Table *next;
         Table *prev;
+        Reservation *assigned = nullptr;
 };
 
 extern Table *tableHead;
