@@ -51,10 +51,10 @@ void Restaurant::viewReservations(string filename) {
             cout << "Phone: ";
             cout << data << endl;
             getline(resList, data);
-            cout << "Military Time: ";
-            cout << data << endl;
+            // cout << "Military Time: ";
+            // cout << data << endl;
             getline(resList, data);
-            cout << "Standard Time: ";
+            cout << "Reserved Time: ";
             cout << data << endl;
             getline(resList, data);
             cout << "Reservation Size: ";
