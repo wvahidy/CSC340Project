@@ -44,7 +44,7 @@ void Restaurant::viewReservations(string filename) {
     while (!resList.eof()) {
         getline(resList, data);
         if (!data.empty()) {
-            cout << "Reservation #" << resCount << " " << endl;
+            cout << "Reservation #" << resCount << endl;
             cout << "Name: ";
             cout << data << endl;
             getline(resList, data);
@@ -67,6 +67,36 @@ void Restaurant::viewReservations(string filename) {
         }
     }
     resList.close();
+}
+
+void Restaurant::viewTables(string filename) {
+    ifstream tableList;
+    string data;
+    int tableCount = 1;
+    tableList.open(filename);
+    if (!tableList.is_open()) {
+        cout << "ERROR";
+        exit(0);
+    }
+    while (!tableList.eof()) {
+        getline(tableList, data);
+        if (!data.empty()) {
+            cout << "Table #" << tableCount << endl;
+            cout << "Status: ";
+            if (data == "0") {
+                cout << "Available " << endl;
+            }
+            else if (data == "1") {
+                cout << "Reserved for: " << endl;
+            }
+            getline(tableList, data);
+            cout << "Table Size: ";
+            cout << data << endl;
+            tableCount++;
+            cout << endl;
+        }
+    }
+    tableList.close();
 }
 
 int Restaurant::getCurrentAvailable() const { return currentAvailable; }

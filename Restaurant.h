@@ -10,6 +10,7 @@ class Restaurant {
         int getCurrentAvailable() const;
         string getRestaurantName() const;
         void viewReservations(string filename);
+        void viewTables(string filename);
     private:
         int currentAvailable;
         friend class Reservation;
