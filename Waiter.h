@@ -4,8 +4,7 @@
 #include "Table.h"
 using namespace std;
 
-class Waiter : public Person, public Table
-{
+class Waiter : public Person {
 public:
     void setTableAssignment1(Table newTable);
     void setTableAssignment2(Table newTable);
@@ -15,6 +14,7 @@ public:
     Table getTableAssignments() const;
 
 private:
+    friend class Table;
     Table tableAssignment1;
     Table tableAssignment2;
     Table tableAssignment3;
