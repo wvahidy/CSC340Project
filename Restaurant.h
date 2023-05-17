@@ -4,6 +4,7 @@ using namespace std;
 
 class Restaurant {
     public:
+        Restaurant();
         void setCurrentAvailable(int numPeople);
         void decCurrentAvailable(int numPeople);
         void incCurrentAvailable(int numPeople);

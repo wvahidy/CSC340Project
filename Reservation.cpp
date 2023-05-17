@@ -260,3 +260,39 @@ Reservation* Reservation::searchName(Reservation *start, string key) {
     }
     return nullptr;
 }
+
+void Reservation::deleteReservation(string key) {
+    Reservation *result;
+    result = Reservation::searchName(resHead, key);
+    if (result != nullptr) {
+        if (result == resHead) {
+            resHead = result->next;
+            result->next->prev = nullptr;
+            result = nullptr;
+            delete result;
+        }
+        else if (result == resTail) {
+            result->prev->next = nullptr;
+            result = nullptr;
+            delete result;
+        }
+        else {
+            result->prev->next = result->next;
+            result->next->prev = result->prev;
+            result = nullptr;
+            delete result;  
+        }
+   }
+}
+
+void Reservation::deleteReservationList(Reservation *&resHead) {
+    Reservation *current = resHead;
+    while (current != nullptr) {
+        Reservation *temp = current->next;
+        current = nullptr;
+        delete current;
+        current = temp;
+    }
+    resHead = nullptr;
+    resTail = nullptr;
+}

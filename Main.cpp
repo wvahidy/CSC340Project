@@ -17,6 +17,7 @@ int main() {
     aRestaurant.setCurrentAvailable(MAX_OCCUPANCY);
     string nameKey;
     string resName;
+    string delKey;
     int mTime;
     string stdTime;
     int numRes;
@@ -34,13 +35,15 @@ int main() {
              << " (1) View reservations\n"
              << " (2) View Tables\n"
              << " (3) Add a reservation\n"
-             << " (4) Sort list by priority\n"
-             << " (5) Sort list by time\n"
-             << " (6) Set number of seats per table\n"
-             << " (7) Search reservations\n"
+             << " (4) Delete a reservation\n"
+             << " (5) Sort list by priority\n"
+             << " (6) Sort list by time\n"
+             << " (7) Assign reservations\n"
+             << " (8) Search reservations\n"
              << "Enter a number from 1 to " << NUM_OPTIONS_S << ", or 0 to exit: " << endl;
         cin >> menuChoice;
         cout << endl;
+        cout << aRestaurant.getCurrentAvailable();
         switch (menuChoice) {
             case 0:
                 cout << "Closing the restaurant. Goodbye!" << endl;
@@ -77,17 +80,22 @@ int main() {
                 cout << "Reservation Created. " << endl;
                 cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
                 break;
-            case 4: 
+            case 4:
+
+            case 5: 
                 Reservation::sortByPriority(resHead);
                 cout << "Reservations successfully sorted by priority." << endl;
                 break;
-            case 5:
+            case 6:
                 Reservation::sortByTime(resHead);
                 cout << "Reservations successfully sorted by time." << endl;
                 break;
-            case 6:
-                break;
             case 7:
+                cout << "Enter name for reservation: " << endl;
+                cin >> delKey;
+                Reservation::deleteReservation(delKey);
+                break;
+            case 8:
                 cout << "Search: ";
                 cin >> nameKey;
                 searchRes = Reservation::searchName(resHead, nameKey);
@@ -102,6 +110,8 @@ int main() {
                 cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
                 menuChoice = 0;
         }
+        Reservation::deleteReservationList(resHead);
+        Table::deleteTableList(tableHead);
     }
     return 0;
 }

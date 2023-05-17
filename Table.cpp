@@ -90,3 +90,38 @@ Table* Table::fileToLinkedList(string filename) {
     tableList.close();
     return tableHead;
 }
+
+void Table::deleteTable(Table *table) {
+    Table *result = table;
+    if (result != nullptr) {
+        if (result == tableHead) {
+            tableHead = result->next;
+            result->next->prev = nullptr;
+            result = nullptr;
+            delete result;
+        }
+        else if (result == resTail) {
+            result->prev->next = nullptr;
+            result = nullptr;
+            delete result;
+        }
+        else {
+            result->prev->next = result->next;
+            result->next->prev = result->prev;
+            result = nullptr;
+            delete result;  
+        }
+   }
+}
+
+void Table::deleteTableList(Table *&tableHead) {
+    Table *current = tableHead;
+    while (current != nullptr) {
+        Table *temp = current->next;
+        current = nullptr;
+        delete current;
+        current = temp;
+    }
+    tableHead = nullptr;
+    tableTail = nullptr;
+}

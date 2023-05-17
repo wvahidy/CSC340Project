@@ -31,6 +31,8 @@ public:
     static void sortByTime(Reservation *start);
     static Reservation *searchName(Reservation *start, string key);
     void printReservationInfo();
+    static void deleteReservation(string key);
+    static void deleteReservationList(Reservation *&resHead);
 private:
     static void updateReservationListFile();
     static void swap(Reservation *first, Reservation *second);

@@ -17,6 +17,8 @@ class Table : public Reservation {
         static void addTable(Table *end, int newStatus, int numSeats);
         void assignReservation(Reservation* res);
         static Table* fileToLinkedList(string filename);
+        static void deleteTable(Table *table);
+        static void deleteTableList(Table *&tableHead);
     private:
         int status = 0;
         int numSeats = 0;
