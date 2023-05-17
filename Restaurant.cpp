@@ -88,6 +88,9 @@ void Restaurant::viewTables(string filename) {
             getline(tableList, data);
             cout << "Table Size: ";
             cout << data << endl;
+            getline(tableList, data);
+            cout << "Reservation: ";
+            cout << data << endl;
             tableCount++;
             cout << endl;
         }
