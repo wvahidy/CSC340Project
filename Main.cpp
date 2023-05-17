@@ -110,8 +110,8 @@ int main() {
                 cout << "Invalid input. Please enter a number between 0 and " << NUM_OPTIONS_S << "." << endl;
                 menuChoice = 0;
         }
-        Reservation::deleteReservationList(resHead);
-        Table::deleteTableList(tableHead);
     }
+    Reservation::deleteReservationList(resHead);
+    Table::deleteTableList(tableHead);
     return 0;
 }
