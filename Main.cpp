@@ -9,8 +9,8 @@ using namespace std;
 
 #define MAX_OCCUPANCY 100
 #define RESTAURANT_NAME "Boxiwana"
-#define NUM_OPTIONS 6
-#define NUM_OPTIONS_S "6"
+#define NUM_OPTIONS 8
+#define NUM_OPTIONS_S "8"
 
 int main() {
     Restaurant aRestaurant;
