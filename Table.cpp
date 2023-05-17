@@ -16,9 +16,10 @@ Table::Table() {
     prev = nullptr;
 }
 
-Table::Table(int newStatus, int newNum) {
+Table::Table(int newStatus, int newNum, string newName) {
     status = newStatus;
     numSeats = newNum;
+    rName = newName;
     next = nullptr;
     prev = nullptr;
 } 
@@ -30,7 +31,9 @@ void Table::setStatus(int newStatus) {
 void Table::setNumSeats(int newNum) {
     this->numSeats = newNum;
 }
-
+void Table::setRName(string newName) {
+    this->rName = newName;
+}
 void Table::setNext(Table *newNext) {
     next = newNext;
 }
@@ -41,11 +44,12 @@ void Table::setPrev(Table *newPrev) {
 
 int Table::getStatus() const {return status;}
 int Table::getNumSeats() const {return numSeats;}
+string Table::getRName() const {return rName;}
 Table* Table::getNext() const {return next;}
 Table* Table::getPrev() const {return prev;}
 
-void Table::addTable(Table *end, int newStatus, int numSeats) {
-    Table *table = new Table(newStatus, numSeats);
+void Table::addTable(Table *end, int newStatus, int numSeats, string newName) {
+    Table *table = new Table(newStatus, numSeats, newName);
     if (end == nullptr)
     {
         table->setPrev(nullptr);
@@ -70,6 +74,7 @@ Table* Table::fileToLinkedList(string filename) {
     int temp;
     int status;
     int numSeats;
+    string rName;
     tableList.open(filename);
     tableHead = nullptr;
     tableTail = nullptr;
@@ -85,7 +90,9 @@ Table* Table::fileToLinkedList(string filename) {
             getline(tableList, data);
             temp = stoi(data);
             numSeats = temp;
-            addTable(tableTail, status, numSeats);
+            getline(tableList, data);
+            rName = data;
+            addTable(tableTail, status, numSeats, rName);
         }
     }
     tableList.close();
@@ -100,6 +107,7 @@ void Table::updateTableList() {
     {
         tableList << current->getStatus() << endl;
         tableList << current->getNumSeats() << endl;
+        tableList << current->getRName() << endl;
         if (current->getNext() != nullptr) {
             tableList << endl;
         }

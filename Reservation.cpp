@@ -261,7 +261,7 @@ Reservation* Reservation::searchName(Reservation *start, string key) {
     return nullptr;
 }
 
-void Reservation::deleteReservation(string key) {
+void Reservation::deleteReservation(Restaurant &store, string key) {
     Reservation *found = resHead;
     string temp;
     transform(key.begin(), key.end(), key.begin(), ::tolower);
@@ -297,6 +297,7 @@ void Reservation::deleteReservation(string key) {
             cout << "Reservation successfully deleted." << endl;
         }
    }
+   store.incCurrentAvailable(found->getNumReserved());
    Reservation::updateReservationListFile();
 }
 
