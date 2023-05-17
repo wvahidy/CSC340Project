@@ -88,7 +88,7 @@ int main() {
             case 4:
                 cout << "Enter name of reservation to delete: " << endl;
                 cin >> delKey;
-                Reservation::deleteReservation(delKey);
+                Reservation::deleteReservation(aRestaurant, delKey);
                 break;
             case 5: 
                 Reservation::sortByPriority(resHead);
