@@ -43,7 +43,6 @@ int main() {
              << "Enter a number from 1 to " << NUM_OPTIONS_S << ", or 0 to exit: " << endl;
         cin >> menuChoice;
         cout << endl;
-        cout << aRestaurant.getCurrentAvailable();
         switch (menuChoice) {
             case 0:
                 cout << "Closing the restaurant. Goodbye!" << endl;
@@ -81,7 +80,10 @@ int main() {
                 cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
                 break;
             case 4:
-
+                cout << "Enter name of reservation to delete: " << endl;
+                cin >> delKey;
+                Reservation::deleteReservation(delKey);
+                break;
             case 5: 
                 Reservation::sortByPriority(resHead);
                 cout << "Reservations successfully sorted by priority." << endl;
@@ -91,9 +93,6 @@ int main() {
                 cout << "Reservations successfully sorted by time." << endl;
                 break;
             case 7:
-                cout << "Enter name for reservation: " << endl;
-                cin >> delKey;
-                Reservation::deleteReservation(delKey);
                 break;
             case 8:
                 cout << "Search: ";

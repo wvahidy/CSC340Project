@@ -12,6 +12,7 @@ class Table : public Reservation {
         void setNext(Table *newNext);
         void setPrev(Table *newPrev);
         int getStatus() const;
+        int getNumSeats() const;
         Table* getNext() const;
         Table* getPrev() const;
         static void addTable(Table *end, int newStatus, int numSeats);
@@ -20,6 +21,7 @@ class Table : public Reservation {
         static void deleteTable(Table *table);
         static void deleteTableList(Table *&tableHead);
     private:
+        static void updateTableList();
         int status = 0;
         int numSeats = 0;
         Table *next;

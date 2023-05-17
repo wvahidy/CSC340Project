@@ -262,35 +262,51 @@ Reservation* Reservation::searchName(Reservation *start, string key) {
 }
 
 void Reservation::deleteReservation(string key) {
-    Reservation *result;
-    result = Reservation::searchName(resHead, key);
-    if (result != nullptr) {
-        if (result == resHead) {
-            resHead = result->next;
-            result->next->prev = nullptr;
-            result = nullptr;
-            delete result;
+    Reservation *found = resHead;
+    string temp;
+    transform(key.begin(), key.end(), key.begin(), ::tolower);
+    while (found != nullptr) {
+        temp = found->getResName();
+        transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
+        if (temp == key) {
+            break;
         }
-        else if (result == resTail) {
-            result->prev->next = nullptr;
-            result = nullptr;
-            delete result;
+        found = found->getNext();
+    }
+
+    if (found != nullptr) {
+        if (found == resHead) {
+            resHead = found->getNext();
+            found->setPrev(nullptr);
+            found->getNext()->setPrev(nullptr);
+            delete found;
+            found = nullptr;
+            cout << "Reservation successfully deleted." << endl;
+        }
+        else if (found == resTail) {
+            found->setNext(nullptr);
+            found->getPrev()->setNext(nullptr);
+            delete found;
+            found = nullptr;
+            cout << "Reservation successfully deleted." << endl;
         }
         else {
-            result->prev->next = result->next;
-            result->next->prev = result->prev;
-            result = nullptr;
-            delete result;  
+            found->getPrev()->setNext(found->getNext());
+            found->getNext()->setPrev(found->getPrev());
+            delete found;
+            found = nullptr;
+            cout << "Reservation successfully deleted." << endl;
         }
    }
+   Reservation::updateReservationListFile();
 }
 
 void Reservation::deleteReservationList(Reservation *&resHead) {
     Reservation *current = resHead;
     while (current != nullptr) {
         Reservation *temp = current->next;
-        current = nullptr;
         delete current;
+        current = nullptr;
         current = temp;
     }
     resHead = nullptr;

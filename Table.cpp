@@ -40,6 +40,7 @@ void Table::setPrev(Table *newPrev) {
 }
 
 int Table::getStatus() const {return status;}
+int Table::getNumSeats() const {return numSeats;}
 Table* Table::getNext() const {return next;}
 Table* Table::getPrev() const {return prev;}
 
@@ -91,35 +92,54 @@ Table* Table::fileToLinkedList(string filename) {
     return tableHead;
 }
 
+void Table::updateTableList() {
+    ofstream tableList;
+    tableList.open("tableList.txt");
+    Table *current = tableHead;
+    while (current != nullptr)
+    {
+        tableList << current->getStatus() << endl;
+        tableList << current->getNumSeats() << endl;
+        if (current->getNext() != nullptr) {
+            tableList << endl;
+        }
+        current = current->getNext();
+    }
+    tableList.close();
+}
+
 void Table::deleteTable(Table *table) {
     Table *result = table;
     if (result != nullptr) {
-        if (result == tableHead) {
-            tableHead = result->next;
-            result->next->prev = nullptr;
-            result = nullptr;
+        if (result == resHead) {
+            resHead = result->getNext();
+            result->setPrev(nullptr);
+            result->getNext()->setPrev(nullptr);
             delete result;
+            result = nullptr;
         }
         else if (result == resTail) {
-            result->prev->next = nullptr;
-            result = nullptr;
+            result->setNext(nullptr);
+            result->getPrev()->setNext(nullptr);
             delete result;
+            result = nullptr;
         }
         else {
-            result->prev->next = result->next;
-            result->next->prev = result->prev;
+            result->getPrev()->setNext(result->getNext());
+            result->getNext()->setPrev(result->getPrev());
+            delete result;
             result = nullptr;
-            delete result;  
         }
    }
+
 }
 
 void Table::deleteTableList(Table *&tableHead) {
     Table *current = tableHead;
     while (current != nullptr) {
         Table *temp = current->next;
-        current = nullptr;
         delete current;
+        current = nullptr;
         current = temp;
     }
     tableHead = nullptr;
