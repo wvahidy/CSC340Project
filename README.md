@@ -6,4 +6,5 @@ The program is in the point of view of a restaurant manager. They are able to ma
 reservations and tables, which are the linked lists. 
 
 g++ Main.cpp Restaurant.cpp Reservation.cpp Table.cpp -o program
+
 ./program
