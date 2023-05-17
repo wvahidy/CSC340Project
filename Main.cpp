@@ -25,17 +25,19 @@ int main() {
     Reservation *searchRes;
     int menuChoice = 0;
     resHead = Reservation::fileToLinkedList(aRestaurant, "reservationList.txt");
+    tableHead = Table::fileToLinkedList("tableList.txt");
     while (menuChoice >= 0 && menuChoice <= NUM_OPTIONS)
     {
         cout << "\n--------------------------------------------\n"
              << RESTAURANT_NAME << " Manager Menu"
              << "\n--------------------------------------------\n"
              << " (1) View reservations\n"
-             << " (2) Add a reservation\n"
-             << " (3) Sort list by priority\n"
-             << " (4) Sort list by time\n"
-             << " (5) Set number of seats per table\n"
-             << " (6) Search reservations\n"
+             << " (2) View Tables\n"
+             << " (3) Add a reservation\n"
+             << " (4) Sort list by priority\n"
+             << " (5) Sort list by time\n"
+             << " (6) Set number of seats per table\n"
+             << " (7) Search reservations\n"
              << "Enter a number from 1 to " << NUM_OPTIONS_S << ", or 0 to exit: " << endl;
         cin >> menuChoice;
         cout << endl;
@@ -48,6 +50,9 @@ int main() {
                 aRestaurant.viewReservations("reservationList.txt");
                 break;
             case 2:
+                aRestaurant.viewTables("tableList.txt");
+                break;
+            case 3:
                 cout << "Name for Reservation: ";
                 cin >> resName;
                 cout << "Phone Number: ";
@@ -72,17 +77,17 @@ int main() {
                 cout << "Reservation Created. " << endl;
                 cout << "Available Space: " << aRestaurant.getCurrentAvailable() << endl;
                 break;
-            case 3: 
+            case 4: 
                 Reservation::sortByPriority(resHead);
                 cout << "Reservations successfully sorted by priority." << endl;
                 break;
-            case 4:
+            case 5:
                 Reservation::sortByTime(resHead);
                 cout << "Reservations successfully sorted by time." << endl;
                 break;
-            case 5:
-                break;
             case 6:
+                break;
+            case 7:
                 cout << "Search: ";
                 cin >> nameKey;
                 searchRes = Reservation::searchName(resHead, nameKey);
