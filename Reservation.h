@@ -44,6 +44,7 @@ private:
     int numReserved;
     int phoneNum;
     string priority;
+    friend class Table;
 };
 
 extern Reservation *resHead;

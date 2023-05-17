@@ -111,15 +111,14 @@ void Table::updateTableList() {
 void Table::deleteTable(Table *table) {
     Table *result = table;
     if (result != nullptr) {
-        if (result == resHead) {
-            resHead = result->getNext();
-            result->setPrev(nullptr);
+        if (result == tableHead) {
+            tableHead = result->getNext();
             result->getNext()->setPrev(nullptr);
             delete result;
             result = nullptr;
         }
-        else if (result == resTail) {
-            result->setNext(nullptr);
+        else if (result == tableTail) {
+            tableTail = result->getPrev();
             result->getPrev()->setNext(nullptr);
             delete result;
             result = nullptr;

@@ -8,6 +8,7 @@
 using namespace std;
 
 #define MAX_OCCUPANCY 100
+#define MAX_TABLE_SEATS 15
 #define RESTAURANT_NAME "Boxiwana"
 #define NUM_OPTIONS 8
 #define NUM_OPTIONS_S "8"
@@ -64,6 +65,11 @@ int main() {
                 stdTime = Reservation::militaryToStandard(mTime);
                 cout << "Number of people for Reservation: ";
                 cin >> numRes;
+                while (numRes > MAX_TABLE_SEATS) {
+                    cout << "ERROR! Exceeds max table occupancy (15)." << endl;
+                    cout << "Number of people for Reservation: ";
+                    cin >> numRes;
+                }
                 cout << "Reservation Priority (H)igh or (L)ow: ";
                 cin >> priority;
                 if (aRestaurant.getCurrentAvailable() - numRes == 0) {

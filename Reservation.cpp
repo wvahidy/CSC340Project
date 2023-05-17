@@ -277,14 +277,13 @@ void Reservation::deleteReservation(string key) {
     if (found != nullptr) {
         if (found == resHead) {
             resHead = found->getNext();
-            found->setPrev(nullptr);
             found->getNext()->setPrev(nullptr);
             delete found;
             found = nullptr;
             cout << "Reservation successfully deleted." << endl;
         }
         else if (found == resTail) {
-            found->setNext(nullptr);
+            resTail = found->getPrev();
             found->getPrev()->setNext(nullptr);
             delete found;
             found = nullptr;

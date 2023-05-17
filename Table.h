@@ -3,7 +3,7 @@
 #include "Reservation.h"
 using namespace std;
 
-class Table : public Reservation {
+class Table {
     public:
         Table();
         Table(int newStatus, int numSeats);
