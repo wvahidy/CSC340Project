@@ -83,7 +83,7 @@ void Restaurant::viewTables(string filename) {
                 cout << "Available " << endl;
             }
             else if (data == "1") {
-                cout << "Reserved: " << endl;
+                cout << "Reserved " << endl;
             }
             getline(tableList, data);
             cout << "Table Size: ";
