@@ -91,6 +91,10 @@ void Table::assignReservation(Reservation *res) {
         cout << ". Assign failed." << endl;
         return;
     }
+    if (this->getNumSeats() < res->getNumReserved()) {
+        cout << "This table does not have enough seats." << endl;
+        return;
+    }
     this->assigned = res;
     this->setStatus(1);
     this->setRName(res->getResName());
