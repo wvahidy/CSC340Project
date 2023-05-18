@@ -19,12 +19,15 @@ int main() {
     string nameKey;
     string resName;
     string delKey;
+    string assignRes;
+    int assignTable;
     int mTime;
     string stdTime;
     int numRes;
     int phone;
     string priority;
     Reservation *searchRes;
+    Table *searchTable;
     int menuChoice = 0;
     resHead = Reservation::fileToLinkedList(aRestaurant, "reservationList.txt");
     tableHead = Table::fileToLinkedList("tableList.txt");
@@ -99,11 +102,20 @@ int main() {
                 cout << "Reservations successfully sorted by time." << endl;
                 break;
             case 7:
+                cout << "Enter name of reservation you want to assign: ";
+                cin >> assignRes;
+                searchRes = Reservation::searchName(resHead, assignRes);
+                cout << "Enter table number you want to assign a reservation to (1-16): ";
+                cin >> assignTable;
+                cout << endl;
+                searchTable = Table::searchTable(tableHead, assignTable);
+                searchTable->assignReservation(searchRes);
+                cout << searchRes->getResName() << "'s reservation successfully assigned to table " << assignTable << endl;
                 break;
             case 8:
                 cout << "Search: ";
                 cin >> nameKey;
-                searchRes = Reservation::searchName(resHead, nameKey);
+                searchRes = Reservation::searchNameInfo(resHead, nameKey);
                 if (searchRes == nullptr) {
                     cout << nameKey << "'s reservation not found." << endl;
                 }

@@ -253,6 +253,18 @@ Reservation* Reservation::searchName(Reservation *start, string key) {
     transform(key.begin(), key.end(), key.begin(), ::tolower);
     while (current != nullptr) {
         if (current->getResName() == key) {
+            return current;
+        }
+        current = current->getNext();
+    }
+    return nullptr;
+}
+
+Reservation* Reservation::searchNameInfo(Reservation *start, string key) {
+    Reservation *current = start;
+    transform(key.begin(), key.end(), key.begin(), ::tolower);
+    while (current != nullptr) {
+        if (current->getResName() == key) {
             current->printReservationInfo();
             return current;
         }

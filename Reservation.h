@@ -29,7 +29,8 @@ public:
     static Reservation* fileToLinkedList(Restaurant &store, string filename);
     static void sortByPriority(Reservation *start);
     static void sortByTime(Reservation *start);
-    static Reservation *searchName(Reservation *start, string key);
+    static Reservation* searchName(Reservation *start, string key);
+    static Reservation* searchNameInfo(Reservation *start, string key);
     void printReservationInfo();
     static void deleteReservation(Restaurant &store, string key);
     static void deleteReservationList(Reservation *&resHead);

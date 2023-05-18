@@ -64,8 +64,11 @@ void Table::addTable(Table *end, int newStatus, int numSeats, string newName) {
     tableTail = table;
 }
 
-void Table::assignReservation(Reservation *table) {
-    this->assigned = table;
+void Table::assignReservation(Reservation *res) {
+    this->assigned = res;
+    this->setStatus(1);
+    this->setRName(res->getResName());
+    updateTableList();
 }
 
 Table* Table::fileToLinkedList(string filename) {
@@ -114,6 +117,16 @@ void Table::updateTableList() {
         current = current->getNext();
     }
     tableList.close();
+}
+
+Table* Table::searchTable(Table *tHead, int key) {
+    Table *current = tHead;
+    Table *found = nullptr;
+    for (int i = 1; i <= key; i++) {
+        found = current;
+        current = current->getNext();
+    }
+    return found;
 }
 
 void Table::deleteTable(Table *table) {

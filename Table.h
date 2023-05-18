@@ -18,6 +18,7 @@ class Table {
         Table* getNext() const;
         Table* getPrev() const;
         static void addTable(Table *end, int newStatus, int numSeats, string newName);
+        static Table* searchTable(Table *tHead, int key);
         void assignReservation(Reservation* res);
         static Table* fileToLinkedList(string filename);
         static void deleteTable(Table *table);
