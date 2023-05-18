@@ -27,7 +27,8 @@ int main() {
     int phone;
     string priority;
     Reservation *searchRes;
-    Table *searchTable;
+    Reservation *targetRes;
+    Table *targetTable;
     int menuChoice = 0;
     resHead = Reservation::fileToLinkedList(aRestaurant, "reservationList.txt");
     tableHead = Table::fileToLinkedList("tableList.txt");
@@ -104,12 +105,12 @@ int main() {
             case 7:
                 cout << "Enter name of reservation you want to assign: ";
                 cin >> assignRes;
-                searchRes = Reservation::searchName(resHead, assignRes);
+                targetRes = Reservation::searchName(resHead, assignRes);
                 cout << "Enter table number you want to assign a reservation to (1-16): ";
                 cin >> assignTable;
                 cout << endl;
-                searchTable = Table::searchTable(tableHead, assignTable);
-                searchTable->assignReservation(searchRes);
+                targetTable = Table::getTable(tableHead, assignTable);
+                targetTable->assignReservation(targetRes);
                 cout << searchRes->getResName() << "'s reservation successfully assigned to table " << assignTable << endl;
                 break;
             case 8:

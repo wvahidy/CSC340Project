@@ -18,11 +18,12 @@ class Table {
         Table* getNext() const;
         Table* getPrev() const;
         static void addTable(Table *end, int newStatus, int numSeats, string newName);
-        static Table* searchTable(Table *tHead, int key);
+        static Table* getTable(Table *tHead, int key);
         void assignReservation(Reservation* res);
         static Table* fileToLinkedList(string filename);
         static void deleteTable(Table *table);
-        static void deleteTableList(Table *&tableHead);
+        static void deleteTableList(Table *&tHead);
+        static bool searchTableName(Table *tHead, string key);
     private:
         static void updateTableList();
         int status = 0;

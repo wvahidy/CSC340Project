@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 #include "Table.h"
 using namespace std;
 
@@ -64,7 +65,28 @@ void Table::addTable(Table *end, int newStatus, int numSeats, string newName) {
     tableTail = table;
 }
 
+bool Table::searchTableName(Table *tHead, string key) {
+    Table *current = tHead;
+    transform(key.begin(), key.end(), key.begin(), ::tolower);
+    while (current != nullptr) {
+        if (current->getRName() == key) {
+            return true;
+        }
+        current = current->getNext();
+    } 
+    return false;
+}
+
 void Table::assignReservation(Reservation *res) {
+    if (this->getStatus() == 1) {
+        cout << "This table is occupied. Assign failed." << endl;
+        return;
+    }
+    if (searchTableName(tableHead, res->getResName()) == true) {
+        cout << "This reservation is already assigned to table";
+        
+        return;
+    }
     this->assigned = res;
     this->setStatus(1);
     this->setRName(res->getResName());
@@ -119,7 +141,7 @@ void Table::updateTableList() {
     tableList.close();
 }
 
-Table* Table::searchTable(Table *tHead, int key) {
+Table* Table::getTable(Table *tHead, int key) {
     Table *current = tHead;
     Table *found = nullptr;
     for (int i = 1; i <= key; i++) {
@@ -154,8 +176,8 @@ void Table::deleteTable(Table *table) {
 
 }
 
-void Table::deleteTableList(Table *&tableHead) {
-    Table *current = tableHead;
+void Table::deleteTableList(Table *&tHead) {
+    Table *current = tHead;
     while (current != nullptr) {
         Table *temp = current->next;
         delete current;
