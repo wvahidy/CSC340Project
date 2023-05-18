@@ -111,7 +111,6 @@ int main() {
                 cout << endl;
                 targetTable = Table::getTable(tableHead, assignTable);
                 targetTable->assignReservation(targetRes);
-                cout << searchRes->getResName() << "'s reservation successfully assigned to table " << assignTable << endl;
                 break;
             case 8:
                 cout << "Search: ";

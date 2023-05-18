@@ -65,31 +65,36 @@ void Table::addTable(Table *end, int newStatus, int numSeats, string newName) {
     tableTail = table;
 }
 
-bool Table::searchTableName(Table *tHead, string key) {
+int Table::searchTableName(Table *tHead, string key) {
     Table *current = tHead;
+    int tableNum = 1;
     transform(key.begin(), key.end(), key.begin(), ::tolower);
     while (current != nullptr) {
         if (current->getRName() == key) {
-            return true;
+            return tableNum;
         }
         current = current->getNext();
+        tableNum++;
     } 
-    return false;
+    return 0;
 }
 
 void Table::assignReservation(Reservation *res) {
+    int tableNum = 0;
     if (this->getStatus() == 1) {
         cout << "This table is occupied. Assign failed." << endl;
         return;
     }
-    if (searchTableName(tableHead, res->getResName()) == true) {
-        cout << "This reservation is already assigned to table";
-        
+    tableNum = searchTableName(tableHead, res->getResName());
+    if (tableNum != 0) {
+        cout << "This reservation is already assigned to table " << to_string(tableNum);
+        cout << ". Assign failed." << endl;
         return;
     }
     this->assigned = res;
     this->setStatus(1);
     this->setRName(res->getResName());
+    cout << res->getResName() << "'s reservation successfully assigned to table " << tableNum << endl;
     updateTableList();
 }
 

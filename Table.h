@@ -23,7 +23,7 @@ class Table {
         static Table* fileToLinkedList(string filename);
         static void deleteTable(Table *table);
         static void deleteTableList(Table *&tHead);
-        static bool searchTableName(Table *tHead, string key);
+        static int searchTableName(Table *tHead, string key);
     private:
         static void updateTableList();
         int status = 0;
