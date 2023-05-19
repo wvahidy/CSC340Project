@@ -7,11 +7,11 @@
 #include "Table.h"
 using namespace std;
 
-#define MAX_OCCUPANCY 100
-#define MAX_TABLE_SEATS 15
-#define RESTAURANT_NAME "Boxiwana"
-#define NUM_OPTIONS 8
-#define NUM_OPTIONS_S "8"
+#define MAX_OCCUPANCY 100  // max occupancy of a restaurant
+#define MAX_TABLE_SEATS 15 // max number of seats at a table and reservation
+#define RESTAURANT_NAME "Boxiwana" // name of restaurant
+#define NUM_OPTIONS 8 // number of options as int
+#define NUM_OPTIONS_S "8" // number of options as string
 
 int main() {
     Restaurant aRestaurant;

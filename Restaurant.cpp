@@ -12,22 +12,23 @@ using namespace std;
 #define MAX_OCCUPANCY 100
 #define RESTAURANT_NAME "Boxiwana"
 
+// default constructor for Restaurant class
 Restaurant::Restaurant() {
     currentAvailable = MAX_OCCUPANCY;
 }
-
+// decrements current available occupancy of restaurant object
 void Restaurant::decCurrentAvailable(int numPeople) {
     currentAvailable -= numPeople;
 }
-
+// increments current available occupancy of restaurant object
 void Restaurant::incCurrentAvailable(int numPeople) {
     currentAvailable += numPeople;
 }
-
+// sets current available occupancy of restaurant object
 void Restaurant::setCurrentAvailable(int numPeople) {
     currentAvailable = numPeople;
 }
-
+// views reservations stored in reservation file
 void Restaurant::viewReservations(string filename) {
     ifstream resList;
     string data;
@@ -64,7 +65,7 @@ void Restaurant::viewReservations(string filename) {
     }
     resList.close();
 }
-
+// views tables stored in table file
 void Restaurant::viewTables(string filename) {
     ifstream tableList;
     string data;
@@ -97,7 +98,7 @@ void Restaurant::viewTables(string filename) {
     }
     tableList.close();
 }
-
+// gets current available occupancy of restaurant
 int Restaurant::getCurrentAvailable() const { return currentAvailable; }
-
+// gets restaurant name
 string Restaurant::getRestaurantName() const { return RESTAURANT_NAME; }

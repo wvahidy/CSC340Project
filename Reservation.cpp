@@ -9,9 +9,11 @@
 #include "Restaurant.h"
 using namespace std;
 
+// extern global variables for reservation linked list head and tail
 Reservation *resHead = nullptr;
 Reservation *resTail = nullptr;
 
+// default constructor for Reservation class
 Reservation::Reservation() {
     resName = "";
     mTime = 0;
@@ -22,6 +24,7 @@ Reservation::Reservation() {
     next = nullptr;
     prev = nullptr;
 }
+// parameter constructor for Reservation class
 Reservation::Reservation(string newName, int newNum, int newMTime, string newSTime, int numR, string prio) {
     resName = newName;
     phoneNum = newNum;
@@ -32,30 +35,39 @@ Reservation::Reservation(string newName, int newNum, int newMTime, string newSTi
     next = nullptr;
     prev = nullptr;
 }
+// sets reservation name of Reservation object
 void Reservation::setResName(string newResName) {
     this->resName = newResName;
 }
+// sets phone number of Reservation object
 void Reservation::setPhoneNum(int newNum) {
     this->phoneNum = newNum;
 }
+// sets next pointer of Reservation object
 void Reservation::setNext(Reservation *newNext) {
     this->next = newNext;
 }
+// sets prev pointer of Reservation object
 void Reservation::setPrev(Reservation *newPrev) {
     this->prev = newPrev;
 }
+// sets priority of Reservation object
 void Reservation::setPriority(string newPriority) {
     this->priority = newPriority;
 }
+// sets military time of Reservation object
 void Reservation::setMilitaryTime(int newMTime) {
     this->mTime = newMTime;
 }
+// sets standard time of Reservation object
 void Reservation::setStandardTime(string newSTime) {
     this->sTime = newSTime;
 }
+// sets reservation size of Reservation object
 void Reservation::setNumReserved(int newNumReserved) {
     this->numReserved = newNumReserved;
 }
+// adds Reservation object to Reservation linked list
 void Reservation::addReservation(Restaurant &store, Reservation *end, string newName, int newNum, int mTime, string sTime, int numR, string prio) {
     Reservation *res = new Reservation(newName, newNum, mTime, sTime, numR, prio);
     store.decCurrentAvailable(numR);
@@ -73,6 +85,7 @@ void Reservation::addReservation(Restaurant &store, Reservation *end, string new
     resTail = res;
     updateReservationListFile();
 }
+// getter methods for Reservation objects
 int Reservation::getMilitaryTime() const { return mTime; }
 string Reservation::getStandardTime() const { return sTime;}
 string Reservation::getResName() const { return resName; }
@@ -81,7 +94,7 @@ Reservation *Reservation::getPrev() const { return prev; }
 int Reservation::getPhoneNum() const { return phoneNum; }
 string Reservation::getPriority() const { return priority; }
 int Reservation::getNumReserved() const { return numReserved; }
-
+// prints reservation info for Reservation object
 void Reservation::printReservationInfo() {
     cout << "Name: ";
     cout << this->getResName() << endl;
@@ -95,7 +108,7 @@ void Reservation::printReservationInfo() {
     cout << this->getPriority() << endl;
     cout << endl;
 }
-
+// converts reservation file to reservation linked list
 Reservation* Reservation::fileToLinkedList(Restaurant &store, string filename) {
     ifstream resList;
     string data;
@@ -136,7 +149,7 @@ Reservation* Reservation::fileToLinkedList(Restaurant &store, string filename) {
     resList.close();
     return resHead;
 }
-
+// updates reservation file with current reservation linked list
 void Reservation::updateReservationListFile() {
     ofstream reservationList;
     reservationList.open("reservationList.txt");
@@ -156,7 +169,7 @@ void Reservation::updateReservationListFile() {
     }
     reservationList.close();
 }
-
+// converts military time to standard time
 string Reservation::militaryToStandard(int time) {
     string newTime;
     int hours = time / 100;
@@ -179,7 +192,7 @@ string Reservation::militaryToStandard(int time) {
     }
     return newTime;
 }
-
+// swaps two reservation objects using pointers
 void Reservation::swap(Reservation *first, Reservation *second) {
     string tempName = first->getResName();
     first->setResName(second->getResName());
@@ -205,7 +218,7 @@ void Reservation::swap(Reservation *first, Reservation *second) {
     first->setPriority(second->getPriority());
     second->setPriority(tempPrio);
 }
-
+// sorts reservation linked list by priority and updates reservation file
 void Reservation::sortByPriority(Reservation *start) {
     Reservation *current = start;
     Reservation *track = start;
@@ -226,7 +239,7 @@ void Reservation::sortByPriority(Reservation *start) {
     }
     updateReservationListFile();
 }
-
+// sorts reservation linked list by time and updates reservation file
 void Reservation::sortByTime(Reservation *start) {
     Reservation *current = start;
     Reservation *track = start;
@@ -247,7 +260,7 @@ void Reservation::sortByTime(Reservation *start) {
     }
     updateReservationListFile();
 }
-
+// returns pointer to reservation of given name
 Reservation* Reservation::searchName(Reservation *start, string key) {
     Reservation *current = start;
     transform(key.begin(), key.end(), key.begin(), ::tolower);
@@ -259,7 +272,7 @@ Reservation* Reservation::searchName(Reservation *start, string key) {
     }
     return nullptr;
 }
-
+// returns pointer to reservation of given name and prints it's info
 Reservation* Reservation::searchNameInfo(Reservation *start, string key) {
     Reservation *current = start;
     transform(key.begin(), key.end(), key.begin(), ::tolower);
@@ -272,7 +285,7 @@ Reservation* Reservation::searchNameInfo(Reservation *start, string key) {
     }
     return nullptr;
 }
-
+// deletes reservation object given reservation name and updates reservation file
 void Reservation::deleteReservation(Restaurant &store, string key) {
     Reservation *found = searchName(resHead, key);
     int resSize = found->getNumReserved();
@@ -302,7 +315,7 @@ void Reservation::deleteReservation(Restaurant &store, string key) {
    store.incCurrentAvailable(resSize);
    Reservation::updateReservationListFile();
 }
-
+// deletes reservation linked list
 void Reservation::deleteReservationList(Reservation *&resHead) {
     Reservation *current = resHead;
     while (current != nullptr) {

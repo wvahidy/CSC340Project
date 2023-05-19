@@ -6,19 +6,22 @@
 #include "Waiter.h"
 using namespace std;
 
-void Waiter::setTableAssignment1(Table newTable) {
+// setters for assigning table assignments for waiters
+void Waiter::setTableAssignment1(Table* newTable) {
     this->tableAssignment1 = newTable;
 }
-void Waiter::setTableAssignment2(Table newTable) {
+void Waiter::setTableAssignment2(Table* newTable) {
     this->tableAssignment2 = newTable;
 }
-void Waiter::setTableAssignment3(Table newTable) {
+void Waiter::setTableAssignment3(Table* newTable) {
     this->tableAssignment3 = newTable;
 }
-void Waiter::setTableAssignment4(Table newTable) {
+void Waiter::setTableAssignment4(Table* newTable) {
     this->tableAssignment4 = newTable;
 }
-void Waiter::setTableAssignment5(Table newTable) {
+void Waiter::setTableAssignment5(Table* newTable) {
     this->tableAssignment5 = newTable;
 }
-Table Waiter::getTableAssignments() const {return tableAssignment1;}
+
+// gets waiter's table assignments
+Table* Waiter::getTableAssignments() const {return tableAssignment1;}
