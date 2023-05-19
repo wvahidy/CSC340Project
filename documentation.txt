@@ -1,0 +1,26 @@
+Restaurant Manager Program
+authors: Jeffrey, Jeremy, Luke, Warisha
+
+goal: Help a restaurant manager (the user) do their job. Namely, edit reservations and table assignments.
+overview:
+(1) Present the user with an option menu to manage reservations or tables
+(2) The reservation list and table list are based on linked lists data structures
+(3) Let the user know if what they did succeeded or failed
+
+Option Menu for the user:
+(1) View reservations
+(2) View Tables
+(3) Add a reservation
+(4) Delete a reservation
+(5) Sort list by priority
+(6) Sort list by time
+(7) Assign reservations
+(8) Search reservations
+
+Important Notes:
+-   When adding a reservation, the user enters the name, time, number of people in the party, and the priority.
+    The time is entered in military time and is converted to standard time so that it is easier for the user to read.
+    "Priority" means how important the guest is. Such as VIP customers, which will be prioritized in serving.
+
+-   The reservation list is kept on a .txt file. It is updated directly after any changes are made to it
+    (add or delete). The .txt file is automatically read into the program when it starts. 
