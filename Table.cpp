@@ -98,7 +98,7 @@ void Table::assignReservation(Reservation *res) {
     this->assigned = res;
     this->setStatus(1);
     this->setRName(res->getResName());
-    cout << res->getResName() << "'s reservation successfully assigned to table " << tableNum << endl;
+    cout << res->getResName() << "'s reservation successfully assigned to table " << to_string(tableNum) << endl;
     updateTableList();
 }
 
