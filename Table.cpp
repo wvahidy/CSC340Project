@@ -93,6 +93,10 @@ Table* Table::getResTable(Table *tHead, string key) {
 
 void Table::assignReservation(Reservation *res, int tableNum) {
     int searchTable = 0;
+    if (this->getRName() == res->getResName()) {
+        cout << "This reserveration is already assigned to this table." << endl;
+        return;
+    }
     if (this->getStatus() == 1) {
         cout << "This table is occupied. Assign failed." << endl;
         return;
