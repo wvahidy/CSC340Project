@@ -95,7 +95,9 @@ int main() {
                 cin >> delKey;
                 Reservation::deleteReservation(aRestaurant, delKey);
                 temp = Table::getResTable(tableHead, delKey);
-                temp->resetTable();
+                if (temp != nullptr) {
+                    temp->resetTable();
+                }
                 break;
             case 5: 
                 Reservation::sortByPriority(resHead);
