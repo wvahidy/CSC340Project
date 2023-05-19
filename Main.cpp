@@ -22,13 +22,13 @@ int main() {
     string assignRes;
     int assignTable;
     int mTime;
-    string stdTime;
+    string stdTime; // standard time in a string to include AM/PM and ':'
     int numRes;
     int phone;
     string priority;
-    Reservation *searchRes;
-    Reservation *targetRes;
-    Table *targetTable;
+    Reservation *searchRes; // Used to search for a reservation
+    Reservation *targetRes; // Used to assign a reservation to a table
+    Table *targetTable; // table assigned with targetRes
     Table *temp;
     int menuChoice = 0;
     resHead = Reservation::fileToLinkedList(aRestaurant, "reservationList.txt");
@@ -133,7 +133,7 @@ int main() {
                 menuChoice = 0;
         }
     }
-    Reservation::deleteReservationList(resHead);
-    Table::deleteTableList(tableHead);
+    Reservation::deleteReservationList(resHead); // Clearing the heap
+    Table::deleteTableList(tableHead); // Clearing the heap
     return 0;
 }

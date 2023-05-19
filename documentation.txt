@@ -23,4 +23,7 @@ Important Notes:
     "Priority" means how important the guest is. Such as VIP customers, which will be prioritized in serving.
 
 -   The reservation list is kept on a .txt file. It is updated directly after any changes are made to it
-    (add or delete). The .txt file is automatically read into the program when it starts. 
+    (add or delete). The .txt file is automatically read into the program when it starts.
+    The same applies to the table list.
+
+-   Waiter class is not fully implemented.
