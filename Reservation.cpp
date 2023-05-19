@@ -274,18 +274,8 @@ Reservation* Reservation::searchNameInfo(Reservation *start, string key) {
 }
 
 void Reservation::deleteReservation(Restaurant &store, string key) {
-    Reservation *found = resHead;
-    string temp;
-    transform(key.begin(), key.end(), key.begin(), ::tolower);
-    while (found != nullptr) {
-        temp = found->getResName();
-        transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
-        if (temp == key) {
-            break;
-        }
-        found = found->getNext();
-    }
-
+    Reservation *found = searchName(resHead, key);
+    int resSize = found->getNumReserved();
     if (found != nullptr) {
         if (found == resHead) {
             resHead = found->getNext();
@@ -309,7 +299,7 @@ void Reservation::deleteReservation(Restaurant &store, string key) {
             cout << "Reservation successfully deleted." << endl;
         }
    }
-   store.incCurrentAvailable(found->getNumReserved());
+   store.incCurrentAvailable(resSize);
    Reservation::updateReservationListFile();
 }
 

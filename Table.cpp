@@ -79,15 +79,27 @@ int Table::searchTableName(Table *tHead, string key) {
     return 0;
 }
 
-void Table::assignReservation(Reservation *res) {
-    int tableNum = 0;
+Table* Table::getResTable(Table *tHead, string key) {
+    Table *current = tHead;
+    transform(key.begin(), key.end(), key.begin(), ::tolower);
+    while (current != nullptr) {
+        if (current->getRName() == key) {
+            return current;
+        }
+        current = current->getNext();
+    } 
+    return nullptr;
+}
+
+void Table::assignReservation(Reservation *res, int tableNum) {
+    int searchTable = 0;
     if (this->getStatus() == 1) {
         cout << "This table is occupied. Assign failed." << endl;
         return;
     }
-    tableNum = searchTableName(tableHead, res->getResName());
-    if (tableNum != 0) {
-        cout << "This reservation is already assigned to table " << to_string(tableNum);
+    searchTable = searchTableName(tableHead, res->getResName());
+    if (searchTable != 0) {
+        cout << "This reservation is already assigned to table " << to_string(searchTable);
         cout << ". Assign failed." << endl;
         return;
     }
@@ -98,7 +110,7 @@ void Table::assignReservation(Reservation *res) {
     this->assigned = res;
     this->setStatus(1);
     this->setRName(res->getResName());
-    cout << res->getResName() << "'s reservation successfully assigned to table " << to_string(tableNum) << endl;
+    cout << res->getResName() << "'s reservation successfully assigned to table " << to_string(tableNum) << ". " << endl;
     updateTableList();
 }
 
@@ -160,6 +172,13 @@ Table* Table::getTable(Table *tHead, int key) {
     return found;
 }
 
+void Table::resetTable() {
+    this->assigned = nullptr;
+    this->setStatus(0);
+    this->setRName("N/A"); 
+    updateTableList();
+}
+
 void Table::deleteTable(Table *table) {
     Table *result = table;
     if (result != nullptr) {
@@ -182,7 +201,6 @@ void Table::deleteTable(Table *table) {
             result = nullptr;
         }
    }
-
 }
 
 void Table::deleteTableList(Table *&tHead) {

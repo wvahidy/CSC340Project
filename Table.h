@@ -19,11 +19,13 @@ class Table {
         Table* getPrev() const;
         static void addTable(Table *end, int newStatus, int numSeats, string newName);
         static Table* getTable(Table *tHead, int key);
-        void assignReservation(Reservation* res);
+        void assignReservation(Reservation* res, int tableNum);
         static Table* fileToLinkedList(string filename);
         static void deleteTable(Table *table);
         static void deleteTableList(Table *&tHead);
         static int searchTableName(Table *tHead, string key);
+        static Table* getResTable(Table *tHead, string key);
+        void resetTable();
     private:
         static void updateTableList();
         int status = 0;

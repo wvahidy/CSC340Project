@@ -29,6 +29,7 @@ int main() {
     Reservation *searchRes;
     Reservation *targetRes;
     Table *targetTable;
+    Table *temp;
     int menuChoice = 0;
     resHead = Reservation::fileToLinkedList(aRestaurant, "reservationList.txt");
     tableHead = Table::fileToLinkedList("tableList.txt");
@@ -93,6 +94,8 @@ int main() {
                 cout << "Enter name of reservation to delete: " << endl;
                 cin >> delKey;
                 Reservation::deleteReservation(aRestaurant, delKey);
+                temp = Table::getResTable(tableHead, delKey);
+                temp->resetTable();
                 break;
             case 5: 
                 Reservation::sortByPriority(resHead);
@@ -110,7 +113,7 @@ int main() {
                 cin >> assignTable;
                 cout << endl;
                 targetTable = Table::getTable(tableHead, assignTable);
-                targetTable->assignReservation(targetRes);
+                targetTable->assignReservation(targetRes, assignTable);
                 break;
             case 8:
                 cout << "Search: ";
