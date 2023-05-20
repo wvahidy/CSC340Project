@@ -1,4 +1,5 @@
-#ifndef RESTAURANT_H
+
+/*Jeffrey Jeremy Luke Warisha*/#ifndef RESTAURANT_H
 #define RESTAURANT_H
 using namespace std;
 

@@ -1,3 +1,4 @@
+/*Jeffrey Jeremy Luke Warisha*/
 #ifndef WAITER_H
 #define WAITER_H
 #include "Person.h"

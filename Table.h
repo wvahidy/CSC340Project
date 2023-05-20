@@ -1,3 +1,5 @@
+/*Jeffrey Jeremy Luke Warisha*/
+#include <stdio.h>
 #ifndef TABLE_H
 #define TABLE_H
 #include "Reservation.h"
